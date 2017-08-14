@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C2068A491F114CB000B6CB64 /* Transform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2068A471F114CB000B6CB64 /* Transform3D.cpp */; };
-		C20A01BF1F09287000C684CD /* Ei_triangel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20A01BD1F09287000C684CD /* Ei_triangel.cpp */; };
-		C235B5491F41D98E00C44779 /* Ei_triangel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5471F41D98E00C44779 /* Ei_triangel3D.cpp */; };
-		C235B54C1F41ED9B00C44779 /* Eimath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B54A1F41ED9B00C44779 /* Eimath.cpp */; };
+		C235B56E1F41F65300C44779 /* EiLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B54E1F41F65300C44779 /* EiLight.cpp */; };
+		C235B56F1F41F65300C44779 /* Eimath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5511F41F65300C44779 /* Eimath.cpp */; };
+		C235B5701F41F65300C44779 /* Ei_line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5541F41F65300C44779 /* Ei_line.cpp */; };
+		C235B5711F41F65300C44779 /* Ei_triangel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5561F41F65300C44779 /* Ei_triangel.cpp */; };
+		C235B5721F41F65300C44779 /* Ei_triangel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */; };
+		C235B5731F41F65300C44779 /* Eiobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B55A1F41F65300C44779 /* Eiobject.cpp */; };
+		C235B5741F41F65300C44779 /* EiRas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B55D1F41F65300C44779 /* EiRas.cpp */; };
+		C235B5751F41F65300C44779 /* EiTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5611F41F65300C44779 /* EiTexture2D.cpp */; };
+		C235B5761F41F65300C44779 /* Transform2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5641F41F65300C44779 /* Transform2D.cpp */; };
+		C235B5771F41F65300C44779 /* Transform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5661F41F65300C44779 /* Transform3D.cpp */; };
+		C235B5781F41F65300C44779 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B56C1F41F65300C44779 /* main.cpp */; };
+		C235B5791F41F65300C44779 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C235B56D1F41F65300C44779 /* README.md */; };
 		C2431F881F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F771F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib */; };
 		C2431F891F3C3C6800190083 /* libopencv_core.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F781F3C3C6800190083 /* libopencv_core.3.3.0.dylib */; };
 		C2431F8A1F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F791F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib */; };
@@ -28,13 +36,6 @@
 		C2431F961F3C3C6800190083 /* libopencv_video.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */; };
 		C2431F971F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */; };
 		C2431F981F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */; };
-		C24A8ACA1F0A6DFE0051A026 /* Transform2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24A8AC81F0A6DFE0051A026 /* Transform2D.cpp */; };
-		C24CDF121F07B62C005CE82E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24CDF111F07B62C005CE82E /* main.cpp */; };
-		C24CDF201F07CD5C005CE82E /* Eiobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24CDF1E1F07CD5C005CE82E /* Eiobject.cpp */; };
-		C24CDF231F07CDB9005CE82E /* EiRas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24CDF211F07CDB9005CE82E /* EiRas.cpp */; };
-		C24CDF271F07D02D005CE82E /* Ei_line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24CDF251F07D02D005CE82E /* Ei_line.cpp */; };
-		C281885D1F190E2800C3F72F /* EiLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C281885B1F190E2800C3F72F /* EiLight.cpp */; };
-		C2CEE4AB1F3B4CC500D4409E /* EiTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2CEE4A91F3B4CC500D4409E /* EiTexture2D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,14 +51,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C2068A471F114CB000B6CB64 /* Transform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform3D.cpp; path = EiTransformation/Transform3D.cpp; sourceTree = "<group>"; };
-		C2068A481F114CB000B6CB64 /* Transform3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Transform3D.hpp; path = EiTransformation/Transform3D.hpp; sourceTree = "<group>"; };
-		C20A01BD1F09287000C684CD /* Ei_triangel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ei_triangel.cpp; path = Eiobject/Ei_triangel.cpp; sourceTree = "<group>"; };
-		C20A01BE1F09287000C684CD /* Ei_triangel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Ei_triangel.hpp; path = Eiobject/Ei_triangel.hpp; sourceTree = "<group>"; };
-		C235B5471F41D98E00C44779 /* Ei_triangel3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ei_triangel3D.cpp; path = Eiobject/Ei_triangel3D.cpp; sourceTree = "<group>"; };
-		C235B5481F41D98E00C44779 /* Ei_triangel3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Ei_triangel3D.hpp; path = Eiobject/Ei_triangel3D.hpp; sourceTree = "<group>"; };
-		C235B54A1F41ED9B00C44779 /* Eimath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Eimath.cpp; path = Eimath/Eimath.cpp; sourceTree = "<group>"; };
-		C235B54B1F41ED9B00C44779 /* Eimath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Eimath.h; path = Eimath/Eimath.h; sourceTree = "<group>"; };
+		C235B54E1F41F65300C44779 /* EiLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiLight.cpp; sourceTree = "<group>"; };
+		C235B54F1F41F65300C44779 /* EiLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiLight.hpp; sourceTree = "<group>"; };
+		C235B5511F41F65300C44779 /* Eimath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eimath.cpp; sourceTree = "<group>"; };
+		C235B5521F41F65300C44779 /* Eimath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eimath.h; sourceTree = "<group>"; };
+		C235B5541F41F65300C44779 /* Ei_line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_line.cpp; sourceTree = "<group>"; };
+		C235B5551F41F65300C44779 /* Ei_line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_line.hpp; sourceTree = "<group>"; };
+		C235B5561F41F65300C44779 /* Ei_triangel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_triangel.cpp; sourceTree = "<group>"; };
+		C235B5571F41F65300C44779 /* Ei_triangel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_triangel.hpp; sourceTree = "<group>"; };
+		C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_triangel3D.cpp; sourceTree = "<group>"; };
+		C235B5591F41F65300C44779 /* Ei_triangel3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_triangel3D.hpp; sourceTree = "<group>"; };
+		C235B55A1F41F65300C44779 /* Eiobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eiobject.cpp; sourceTree = "<group>"; };
+		C235B55B1F41F65300C44779 /* Eiobject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eiobject.hpp; sourceTree = "<group>"; };
+		C235B55D1F41F65300C44779 /* EiRas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiRas.cpp; sourceTree = "<group>"; };
+		C235B55E1F41F65300C44779 /* EiRas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiRas.hpp; sourceTree = "<group>"; };
+		C235B55F1F41F65300C44779 /* EiRas.ppm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EiRas.ppm; sourceTree = "<group>"; };
+		C235B5611F41F65300C44779 /* EiTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiTexture2D.cpp; sourceTree = "<group>"; };
+		C235B5621F41F65300C44779 /* EiTexture2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiTexture2D.hpp; sourceTree = "<group>"; };
+		C235B5641F41F65300C44779 /* Transform2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform2D.cpp; sourceTree = "<group>"; };
+		C235B5651F41F65300C44779 /* Transform2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform2D.hpp; sourceTree = "<group>"; };
+		C235B5661F41F65300C44779 /* Transform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform3D.cpp; sourceTree = "<group>"; };
+		C235B5671F41F65300C44779 /* Transform3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform3D.hpp; sourceTree = "<group>"; };
+		C235B5691F41F65300C44779 /* 02180049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02180049.jpg; sourceTree = "<group>"; };
+		C235B56A1F41F65300C44779 /* Ei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ei.png; sourceTree = "<group>"; };
+		C235B56B1F41F65300C44779 /* RT.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = RT.bmp; sourceTree = "<group>"; };
+		C235B56C1F41F65300C44779 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C235B56D1F41F65300C44779 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C2431F771F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_calib3d.3.3.0.dylib"; sourceTree = "<group>"; };
 		C2431F781F3C3C6800190083 /* libopencv_core.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_core.3.3.0.dylib"; sourceTree = "<group>"; };
 		C2431F791F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_dnn.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_dnn.3.3.0.dylib"; sourceTree = "<group>"; };
@@ -75,20 +94,7 @@
 		C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_video.3.3.0.dylib"; sourceTree = "<group>"; };
 		C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videoio.3.3.0.dylib"; sourceTree = "<group>"; };
 		C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videostab.3.3.0.dylib"; sourceTree = "<group>"; };
-		C24A8AC81F0A6DFE0051A026 /* Transform2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform2D.cpp; path = EiTransformation/Transform2D.cpp; sourceTree = "<group>"; };
-		C24A8AC91F0A6DFE0051A026 /* Transform2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Transform2D.hpp; path = EiTransformation/Transform2D.hpp; sourceTree = "<group>"; };
 		C24CDF0E1F07B62C005CE82E /* EvililluminationRas */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvililluminationRas; sourceTree = BUILT_PRODUCTS_DIR; };
-		C24CDF111F07B62C005CE82E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		C24CDF1E1F07CD5C005CE82E /* Eiobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Eiobject.cpp; path = Eiobject/Eiobject.cpp; sourceTree = "<group>"; };
-		C24CDF1F1F07CD5C005CE82E /* Eiobject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Eiobject.hpp; path = Eiobject/Eiobject.hpp; sourceTree = "<group>"; };
-		C24CDF211F07CDB9005CE82E /* EiRas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiRas.cpp; path = EiRas/EiRas.cpp; sourceTree = "<group>"; };
-		C24CDF221F07CDB9005CE82E /* EiRas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiRas.hpp; path = EiRas/EiRas.hpp; sourceTree = "<group>"; };
-		C24CDF251F07D02D005CE82E /* Ei_line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ei_line.cpp; path = Eiobject/Ei_line.cpp; sourceTree = "<group>"; };
-		C24CDF261F07D02D005CE82E /* Ei_line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Ei_line.hpp; path = Eiobject/Ei_line.hpp; sourceTree = "<group>"; };
-		C281885B1F190E2800C3F72F /* EiLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiLight.cpp; path = EiLight/EiLight.cpp; sourceTree = "<group>"; };
-		C281885C1F190E2800C3F72F /* EiLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiLight.hpp; path = EiLight/EiLight.hpp; sourceTree = "<group>"; };
-		C2CEE4A91F3B4CC500D4409E /* EiTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiTexture2D.cpp; path = EiTexture2D/EiTexture2D.cpp; sourceTree = "<group>"; };
-		C2CEE4AA1F3B4CC500D4409E /* EiTexture2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiTexture2D.hpp; path = EiTexture2D/EiTexture2D.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C235B54D1F41F65300C44779 /* EiLight */ = {
+			isa = PBXGroup;
+			children = (
+				C235B54E1F41F65300C44779 /* EiLight.cpp */,
+				C235B54F1F41F65300C44779 /* EiLight.hpp */,
+			);
+			path = EiLight;
+			sourceTree = "<group>";
+		};
+		C235B5501F41F65300C44779 /* Eimath */ = {
+			isa = PBXGroup;
+			children = (
+				C235B5511F41F65300C44779 /* Eimath.cpp */,
+				C235B5521F41F65300C44779 /* Eimath.h */,
+			);
+			path = Eimath;
+			sourceTree = "<group>";
+		};
+		C235B5531F41F65300C44779 /* Eiobject */ = {
+			isa = PBXGroup;
+			children = (
+				C235B5541F41F65300C44779 /* Ei_line.cpp */,
+				C235B5551F41F65300C44779 /* Ei_line.hpp */,
+				C235B5561F41F65300C44779 /* Ei_triangel.cpp */,
+				C235B5571F41F65300C44779 /* Ei_triangel.hpp */,
+				C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */,
+				C235B5591F41F65300C44779 /* Ei_triangel3D.hpp */,
+				C235B55A1F41F65300C44779 /* Eiobject.cpp */,
+				C235B55B1F41F65300C44779 /* Eiobject.hpp */,
+			);
+			path = Eiobject;
+			sourceTree = "<group>";
+		};
+		C235B55C1F41F65300C44779 /* EiRas */ = {
+			isa = PBXGroup;
+			children = (
+				C235B55D1F41F65300C44779 /* EiRas.cpp */,
+				C235B55E1F41F65300C44779 /* EiRas.hpp */,
+			);
+			path = EiRas;
+			sourceTree = "<group>";
+		};
+		C235B5601F41F65300C44779 /* EiTexture2D */ = {
+			isa = PBXGroup;
+			children = (
+				C235B5611F41F65300C44779 /* EiTexture2D.cpp */,
+				C235B5621F41F65300C44779 /* EiTexture2D.hpp */,
+			);
+			path = EiTexture2D;
+			sourceTree = "<group>";
+		};
+		C235B5631F41F65300C44779 /* EiTransformation */ = {
+			isa = PBXGroup;
+			children = (
+				C235B5641F41F65300C44779 /* Transform2D.cpp */,
+				C235B5651F41F65300C44779 /* Transform2D.hpp */,
+				C235B5661F41F65300C44779 /* Transform3D.cpp */,
+				C235B5671F41F65300C44779 /* Transform3D.hpp */,
+			);
+			path = EiTransformation;
+			sourceTree = "<group>";
+		};
+		C235B5681F41F65300C44779 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				C235B5691F41F65300C44779 /* 02180049.jpg */,
+				C235B56A1F41F65300C44779 /* Ei.png */,
+				C235B56B1F41F65300C44779 /* RT.bmp */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
 		C2431F761F3C3BC200190083 /* OpenCV */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,22 +221,20 @@
 			name = OpenCV;
 			sourceTree = "<group>";
 		};
-		C24A8AC71F0A6DB70051A026 /* EiTransformation */ = {
-			isa = PBXGroup;
-			children = (
-				C24A8AC81F0A6DFE0051A026 /* Transform2D.cpp */,
-				C24A8AC91F0A6DFE0051A026 /* Transform2D.hpp */,
-				C2068A471F114CB000B6CB64 /* Transform3D.cpp */,
-				C2068A481F114CB000B6CB64 /* Transform3D.hpp */,
-			);
-			name = EiTransformation;
-			sourceTree = "<group>";
-		};
 		C24CDF051F07B62C005CE82E = {
 			isa = PBXGroup;
 			children = (
+				C235B55F1F41F65300C44779 /* EiRas.ppm */,
+				C235B56D1F41F65300C44779 /* README.md */,
+				C235B5681F41F65300C44779 /* img */,
+				C235B54D1F41F65300C44779 /* EiLight */,
+				C235B5501F41F65300C44779 /* Eimath */,
+				C235B5531F41F65300C44779 /* Eiobject */,
+				C235B55C1F41F65300C44779 /* EiRas */,
+				C235B5601F41F65300C44779 /* EiTexture2D */,
+				C235B5631F41F65300C44779 /* EiTransformation */,
+				C235B56C1F41F65300C44779 /* main.cpp */,
 				C2431F761F3C3BC200190083 /* OpenCV */,
-				C24CDF101F07B62C005CE82E /* EvililluminationRas */,
 				C24CDF0F1F07B62C005CE82E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -169,71 +245,6 @@
 				C24CDF0E1F07B62C005CE82E /* EvililluminationRas */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C24CDF101F07B62C005CE82E /* EvililluminationRas */ = {
-			isa = PBXGroup;
-			children = (
-				C2CEE4A81F3B4C9E00D4409E /* EiTexture2D */,
-				C281885E1F190E3300C3F72F /* EiLight */,
-				C24CDF1A1F07CCE4005CE82E /* Eimath */,
-				C24A8AC71F0A6DB70051A026 /* EiTransformation */,
-				C24CDF241F07CDBE005CE82E /* EiRas */,
-				C24CDF1D1F07CD3C005CE82E /* Eiobject */,
-				C24CDF111F07B62C005CE82E /* main.cpp */,
-			);
-			path = EvililluminationRas;
-			sourceTree = "<group>";
-		};
-		C24CDF1A1F07CCE4005CE82E /* Eimath */ = {
-			isa = PBXGroup;
-			children = (
-				C235B54A1F41ED9B00C44779 /* Eimath.cpp */,
-				C235B54B1F41ED9B00C44779 /* Eimath.h */,
-			);
-			name = Eimath;
-			sourceTree = "<group>";
-		};
-		C24CDF1D1F07CD3C005CE82E /* Eiobject */ = {
-			isa = PBXGroup;
-			children = (
-				C235B5471F41D98E00C44779 /* Ei_triangel3D.cpp */,
-				C235B5481F41D98E00C44779 /* Ei_triangel3D.hpp */,
-				C24CDF1E1F07CD5C005CE82E /* Eiobject.cpp */,
-				C24CDF1F1F07CD5C005CE82E /* Eiobject.hpp */,
-				C24CDF251F07D02D005CE82E /* Ei_line.cpp */,
-				C24CDF261F07D02D005CE82E /* Ei_line.hpp */,
-				C20A01BD1F09287000C684CD /* Ei_triangel.cpp */,
-				C20A01BE1F09287000C684CD /* Ei_triangel.hpp */,
-			);
-			name = Eiobject;
-			sourceTree = "<group>";
-		};
-		C24CDF241F07CDBE005CE82E /* EiRas */ = {
-			isa = PBXGroup;
-			children = (
-				C24CDF211F07CDB9005CE82E /* EiRas.cpp */,
-				C24CDF221F07CDB9005CE82E /* EiRas.hpp */,
-			);
-			name = EiRas;
-			sourceTree = "<group>";
-		};
-		C281885E1F190E3300C3F72F /* EiLight */ = {
-			isa = PBXGroup;
-			children = (
-				C281885B1F190E2800C3F72F /* EiLight.cpp */,
-				C281885C1F190E2800C3F72F /* EiLight.hpp */,
-			);
-			name = EiLight;
-			sourceTree = "<group>";
-		};
-		C2CEE4A81F3B4C9E00D4409E /* EiTexture2D */ = {
-			isa = PBXGroup;
-			children = (
-				C2CEE4A91F3B4CC500D4409E /* EiTexture2D.cpp */,
-				C2CEE4AA1F3B4CC500D4409E /* EiTexture2D.hpp */,
-			);
-			name = EiTexture2D;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,17 +305,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24CDF201F07CD5C005CE82E /* Eiobject.cpp in Sources */,
-				C24A8ACA1F0A6DFE0051A026 /* Transform2D.cpp in Sources */,
-				C235B54C1F41ED9B00C44779 /* Eimath.cpp in Sources */,
-				C2CEE4AB1F3B4CC500D4409E /* EiTexture2D.cpp in Sources */,
-				C20A01BF1F09287000C684CD /* Ei_triangel.cpp in Sources */,
-				C24CDF121F07B62C005CE82E /* main.cpp in Sources */,
-				C281885D1F190E2800C3F72F /* EiLight.cpp in Sources */,
-				C235B5491F41D98E00C44779 /* Ei_triangel3D.cpp in Sources */,
-				C24CDF271F07D02D005CE82E /* Ei_line.cpp in Sources */,
-				C24CDF231F07CDB9005CE82E /* EiRas.cpp in Sources */,
-				C2068A491F114CB000B6CB64 /* Transform3D.cpp in Sources */,
+				C235B5731F41F65300C44779 /* Eiobject.cpp in Sources */,
+				C235B5771F41F65300C44779 /* Transform3D.cpp in Sources */,
+				C235B5721F41F65300C44779 /* Ei_triangel3D.cpp in Sources */,
+				C235B5701F41F65300C44779 /* Ei_line.cpp in Sources */,
+				C235B5781F41F65300C44779 /* main.cpp in Sources */,
+				C235B56E1F41F65300C44779 /* EiLight.cpp in Sources */,
+				C235B5791F41F65300C44779 /* README.md in Sources */,
+				C235B56F1F41F65300C44779 /* Eimath.cpp in Sources */,
+				C235B5751F41F65300C44779 /* EiTexture2D.cpp in Sources */,
+				C235B5741F41F65300C44779 /* EiRas.cpp in Sources */,
+				C235B5761F41F65300C44779 /* Transform2D.cpp in Sources */,
+				C235B5711F41F65300C44779 /* Ei_triangel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
