@@ -39,14 +39,7 @@ public:
     
     
     private:
-    
-    vector<float>angel_line;
-    vector<vec2>axis_line;
-    
-    vector<vec2> translation_offset_line;
-    
-    
-    
+
     std::vector<vec2> pointLine;
     vec2 pM;
     float k_p0_p2,b_p0_p2; bool Max_k_p0_p2;

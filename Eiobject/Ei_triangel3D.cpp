@@ -11,6 +11,11 @@
 
 Ei_triangel3D::Ei_triangel3D(vec3 _pA,vec3 _pB,vec3 _pC)
 {
+    disableLight = false;
+    tex2D = NULL;
+    
+    alpha = 1;
+    
     pA = _pA;
     pB = _pB;
     pC = _pC;
@@ -28,12 +33,11 @@ void Ei_triangel3D::MatrixTransform(matrix4X4 &mat)
 
 
 
-void Ei_triangel3D::setTexture2D(bool enabel,EiTexture2D* tex2D)
+void Ei_triangel3D::setTexture2D(EiTexture2D* tex2D,EiTexAddressingMode mode,int mipmapLevel)
 {
-    if(enabel)
-        this->tex2D = tex2D;
-    else
-        this->tex2D = NULL;
+    this->tex2D = tex2D;
+    this->addressingMode = mode;
+    this->i_mipmapLevel = mipmapLevel;
 }
 
 Ei_triangel3D::PixelShaderIn Ei_triangel3D::VertexLerpTop(float y)
@@ -138,8 +142,10 @@ void Ei_triangel3D::draw()
     
     ProcessPoint(MapA,MapB,MapC);
     
-    EiLight* light = getEiLight();
     
+    EiLight* light = getEiLight();
+    if(disableLight)
+        light = NULL;
     
     
     if((!flag_0 && !flag_1) || flag_0)
@@ -175,7 +181,6 @@ void Ei_triangel3D::draw()
             //
             this->chageStartEndWithZ(start,end,pixelIn.z_start,pixelIn.z_end,pixelIn.x_start,pixelIn.x_end,pixelIn.y_start,pixelIn.y_end,pixelIn.tex_start,pixelIn.tex_end);
             
-            //                float z_step = (z_end - z_start);
             
             
             for(float x = start;x<end;x+=reduceX)
@@ -195,14 +200,24 @@ void Ei_triangel3D::draw()
                     vec2 TexCoord;
                     TexCoord.x = ( (x-start) / (end - start) * (pixelIn.tex_start.x/pixelIn.z_start - pixelIn.tex_end.x/pixelIn.z_end) + pixelIn.tex_end.x/pixelIn.z_end) * z;
                     TexCoord.y = ( (x-start) / (end - start) * (pixelIn.tex_start.y/pixelIn.z_start - pixelIn.tex_end.y/pixelIn.z_end) + pixelIn.tex_end.y/pixelIn.z_end) * z;
-                    setPixelWithDepthTest(vec2(x,y), z, tex2D->getColorByUV(vec2(TexCoord.x,TexCoord.y)));
+                    
+                    float ddx = (pixelIn.tex_start.x/pixelIn.z_start - pixelIn.tex_end.x/pixelIn.z_end)/ (end - start)*z/(float)g_width*2.0;
+                    float ddy = (pixelIn.tex_start.y/pixelIn.z_start - pixelIn.tex_end.y/pixelIn.z_end)/ (end - start)*z/(float)g_width*2.0;
+                    
+                    vec4 i_Color = tex2D->getColorByUV(vec2(TexCoord.x,TexCoord.y),addressingMode,this->i_mipmapLevel,vec2(ddx,ddy));
+                    i_Color.a = alpha;
+                    setPixelWithDepthTest(vec2(x,y), z, i_Color);
                 }
                 else
                 {
                     if(light)
-                        setPixelWithDepthTest(vec2(x,y), z, light->computLight(vec3(worldX,worldY,z), normal, albedo));
+                    {
+                        vec4 i_Color = light->computLight(vec3(worldX,worldY,z), normal, albedo);
+                        i_Color.a = alpha;
+                        setPixelWithDepthTest(vec2(x,y), z, i_Color);
+                    }
                     else
-                        setPixelWithDepthTest(vec2(x,y), z, lerpColor(vec2(x,y),pA,pB,pC));
+                        setPixelWithDepthTest(vec2(x,y), z, colorA);
                     
                 }
             }
@@ -258,16 +273,24 @@ void Ei_triangel3D::draw()
                     TexCoord.x = ( (x-start) / (end - start) * (pixelIn.tex_start.x/pixelIn.z_start - pixelIn.tex_end.x/pixelIn.z_end) + pixelIn.tex_end.x/pixelIn.z_end) * z;
                     TexCoord.y = ( (x-start) / (end - start) * (pixelIn.tex_start.y/pixelIn.z_start - pixelIn.tex_end.y/pixelIn.z_end) + pixelIn.tex_end.y/pixelIn.z_end) * z;
                     
+                    float ddx = (pixelIn.tex_start.x/pixelIn.z_start - pixelIn.tex_end.x/pixelIn.z_end)/ (end - start)*z/(float)g_width*2.0;
+                    float ddy = (pixelIn.tex_start.y/pixelIn.z_start - pixelIn.tex_end.y/pixelIn.z_end)/ (end - start)*z/(float)g_width*2.0;
                     
-                    setPixelWithDepthTest(vec2(x,y), z, tex2D->getColorByUV(vec2(TexCoord.x,TexCoord.y)));
+                    vec4 i_Color = tex2D->getColorByUV(vec2(TexCoord.x,TexCoord.y),addressingMode,this->i_mipmapLevel,vec2(ddx,ddy));
+                    i_Color.a = alpha;
+                    setPixelWithDepthTest(vec2(x,y), z, i_Color);
                 }
                 
                 else
                 {
                     if(light)
-                        setPixelWithDepthTest(vec2(x,y), z, light->computLight(vec3(worldX,worldY,z), normal, albedo));
+                    {
+                        vec4 i_Color = light->computLight(vec3(worldX,worldY,z), normal, albedo);
+                        i_Color.a = alpha;
+                        setPixelWithDepthTest(vec2(x,y), z, i_Color);
+                    }
                     else
-                        setPixelWithDepthTest(vec2(x,y), z, lerpColor(vec2(x,y),pA,pB,pC));
+                        setPixelWithDepthTest(vec2(x,y), z, colorA);
                     
                 }
             }

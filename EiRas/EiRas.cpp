@@ -8,18 +8,23 @@
 
 #include "EiRas.hpp"
 
-
-
-
 vec4* frame =  nullptr;
+
 float* depthBuffer = nullptr;
 
 EiLight* g_EiLight = nullptr;
 
 matrix4X4 mat4X4Proj;
 
+bool enabelMerge;
+
+vec4 alphaMerge(vec4 _background, vec4 _foreground);
+
+
 void initEi()
 {
+    enabelMerge = false;
+    
     frame = new vec4[g_width * g_height];
     depthBuffer = new float[g_width * g_height];
     
@@ -33,7 +38,10 @@ void setPixel(int x,int y,vec4 color)
 {
     if(coordinate2frame(x, y))
     {
-        frame[y*g_width + x] = color;
+        if(enabelMerge)
+            frame[y*g_width + x] = alphaMerge(frame[y*g_width + x], color);
+        else
+            frame[y*g_width + x] = color;
     }
     
     
@@ -46,7 +54,10 @@ void setPixel(vec2 p,vec4 color)
     
     if(coordinate2frame(x, y))
     {
-        frame[y*g_width + x] = color;
+        if(enabelMerge)
+            frame[y*g_width + x] = alphaMerge(frame[y*g_width + x], color);
+        else
+            frame[y*g_width + x] = color;
     }
 }
 
@@ -58,17 +69,32 @@ void setPixelWithDepthTest(vec2 p,float z,vec4 color)
     if(coordinate2frame(x, y))
     {
         
-        if(depthBuffer[(int)y*g_width + (int)x] < z)
+        if(!enabelMerge && depthBuffer[(int)y*g_width + (int)x] < z)
             return;
-        frame[(int)y*g_width + (int)x] = color;
-        depthBuffer[(int)y*g_width + (int)x] = z;
+        if(enabelMerge)
+            frame[(int)y*g_width + (int)x] = alphaMerge(frame[(int)y*g_width + (int)x], color);
+        else
+            frame[(int)y*g_width + (int)x] = color;
+        
+        if(depthBuffer[(int)y*g_width + (int)x] < z)
+            depthBuffer[(int)y*g_width + (int)x] = z;
         
     }
 }
 
+vec4 alphaMerge(vec4 _background, vec4 _foreground)
+{
+    vec4 color;
+    color.r = _foreground.a * _foreground.r + (1.0-_foreground.a) * _background.r;
+    color.g = _foreground.a * _foreground.g + (1.0-_foreground.a) * _background.g;
+    color.b = _foreground.a * _foreground.b + (1.0-_foreground.a) * _background.b;
+    color.a = 1.0;
+    
+    return color;
+}
+
 bool coordinate2frame(int &x, int &y)
 {
-    //x = -x;
     y = -y;
     x += g_width/2;
     y += g_height/2;
@@ -107,6 +133,9 @@ float* getDepthBuffer()
     return depthBuffer;
 }
 
+
+
+
 void setProjMatrix(matrix4X4 mat)
 {
     mat4X4Proj = mat;
@@ -131,6 +160,7 @@ void matMatrix44PerspectiveFovLH(matrix4X4 &mat, const float fov, const float as
 
 
 
+
 void setEiLight(EiLight* _EiLight)
 {
     g_EiLight = _EiLight;
@@ -139,4 +169,13 @@ void setEiLight(EiLight* _EiLight)
 EiLight* getEiLight()
 {
     return g_EiLight;
+}
+
+void enableAlphaMerge()
+{
+    enabelMerge = true;
+}
+void disableAlphaMerge()
+{
+    enabelMerge = false;
 }

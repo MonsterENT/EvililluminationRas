@@ -16,6 +16,15 @@
 using std::string;
 using std::vector;
 
+#define MAX_mipmapCount 16
+
+enum EiTexAddressingMode
+{
+    AddressingMode_Warp,
+    AddressingMode_Mirror,
+};
+
+
 class EiTexture2D
 {
     
@@ -30,8 +39,28 @@ public:
     
     ~EiTexture2D();
     
-    vec4 getColorByUV(vec2 UV);
+    vec4 getColorByUV(vec2 UV,EiTexAddressingMode mode,int mipmapLevel=0 ,vec2 OffsetXY = vec2());
     
+    void enableMipmap();
+    
+    int getMipmapCount();
+    
+    
+private:
+    struct mipmap
+    {
+        int height,width;
+        vector<vec4*> tex2D;
+    };
+
+    bool isEnableMipmap;
+    int MipmapCount;
+    
+    vector<mipmap> mipmapLine;
+    vec4 isSampleTex(float x,float y,int mipmapLevel=0);
+    void createMipmap();
+    
+
     
 };
 

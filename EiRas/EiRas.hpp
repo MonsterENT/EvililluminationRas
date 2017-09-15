@@ -53,4 +53,8 @@ void setEiLight(EiLight* _EiLight);
 EiLight* getEiLight();
 
 
+
+void enableAlphaMerge();
+void disableAlphaMerge();
+
 #endif /* EiRas_hpp */

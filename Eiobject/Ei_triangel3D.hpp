@@ -23,9 +23,10 @@ public:
     vec4 colorA,colorB,colorC;
     
     vec2 TexA,TexB,TexC;
-    EiTexture2D* tex2D;
     
+    float alpha;
     
+    bool disableLight;
     
     vec3 albedo;
     vec3 normal;
@@ -34,11 +35,12 @@ public:
     
     
     void MatrixTransform(matrix4X4 &mat);
-    void setTexture2D(bool enabel=true,EiTexture2D* tex2D=NULL);
+    void setTexture2D(EiTexture2D* tex2D,EiTexAddressingMode mode,int mipmapLevel);
     
     void draw();
     
 private:
+    
     
     struct PointMap
     {
@@ -76,6 +78,9 @@ private:
         
     }PixelShaderIn;
     
+    EiTexture2D* tex2D;
+    EiTexAddressingMode addressingMode;
+    int i_mipmapLevel;
     
     vector<PointMap>pointLine;
     vec2 pM;

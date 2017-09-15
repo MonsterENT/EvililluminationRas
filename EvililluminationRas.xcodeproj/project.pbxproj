@@ -36,6 +36,7 @@
 		C2431F961F3C3C6800190083 /* libopencv_video.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */; };
 		C2431F971F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */; };
 		C2431F981F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */; };
+		C26B4ED51F6C02FD00315FA7 /* EiEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +96,8 @@
 		C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videoio.3.3.0.dylib"; sourceTree = "<group>"; };
 		C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videostab.3.3.0.dylib"; sourceTree = "<group>"; };
 		C24CDF0E1F07B62C005CE82E /* EvililluminationRas */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvililluminationRas; sourceTree = BUILT_PRODUCTS_DIR; };
+		C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiEffect.cpp; path = EiEffect/EiEffect.cpp; sourceTree = "<group>"; };
+		C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiEffect.hpp; path = EiEffect/EiEffect.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +227,7 @@
 		C24CDF051F07B62C005CE82E = {
 			isa = PBXGroup;
 			children = (
+				C26B4ED21F6C02D200315FA7 /* Effect */,
 				C235B55F1F41F65300C44779 /* EiRas.ppm */,
 				C235B56D1F41F65300C44779 /* README.md */,
 				C235B5681F41F65300C44779 /* img */,
@@ -245,6 +249,15 @@
 				C24CDF0E1F07B62C005CE82E /* EvililluminationRas */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C26B4ED21F6C02D200315FA7 /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */,
+				C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */,
+			);
+			name = Effect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +323,7 @@
 				C235B5721F41F65300C44779 /* Ei_triangel3D.cpp in Sources */,
 				C235B5701F41F65300C44779 /* Ei_line.cpp in Sources */,
 				C235B5781F41F65300C44779 /* main.cpp in Sources */,
+				C26B4ED51F6C02FD00315FA7 /* EiEffect.cpp in Sources */,
 				C235B56E1F41F65300C44779 /* EiLight.cpp in Sources */,
 				C235B5791F41F65300C44779 /* README.md in Sources */,
 				C235B56F1F41F65300C44779 /* Eimath.cpp in Sources */,
