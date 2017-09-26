@@ -15,21 +15,44 @@ float* depthBuffer = nullptr;
 EiLight* g_EiLight = nullptr;
 
 matrix4X4 mat4X4Proj;
+matrix4X4 *mat4X4Camera;
 
 bool enabelMerge;
 
 vec4 alphaMerge(vec4 _background, vec4 _foreground);
 
+bool sampleFrame(int x,int y,vec4 &Color);
+
+vec2 MSAAPosMatrix[]= {
+    vec2(-1,-1),vec2(1,-1),
+    vec2(-1,+1),vec2(+1,+1)
+};
+
+vec2 MSAA16XSampleMatrix[]= {
+    vec2(-1,-1),vec2(1,-1),
+    vec2(-1,+1),vec2(+1,+1)
+};
+vec2 MSAA4XSampleMatrix[]= {
+    vec2(0,0),vec2(1,0),
+    vec2(0,+1),vec2(+1,+1)
+};
+
+int NDC2FrameWidth,NDC2FrameHeight;
+int MSAASqrt;
 
 void initEi()
 {
     enabelMerge = false;
     
-    frame = new vec4[g_width * g_height];
-    depthBuffer = new float[g_width * g_height];
+    frame = new vec4[g_width * g_height * MSAA4X];
+    depthBuffer = new float[g_width * MSAA4X * g_height];
     
-    for(int i =0;i<g_width * g_height;i++)
+    for(int i =0;i<g_width* g_height*MSAA4X;i++)
         depthBuffer[i] = MAXFLOAT;
+    
+    MSAASqrt = sqrt(MSAA4X);
+    NDC2FrameWidth = g_width * MSAASqrt;
+    NDC2FrameHeight = g_height * MSAASqrt;
 }
 
 
@@ -63,23 +86,107 @@ void setPixel(vec2 p,vec4 color)
 
 void setPixelWithDepthTest(vec2 p,float z,vec4 color)
 {
-    float x = p.x;
-    float y = p.y;
     
-    if(coordinate2frame(x, y))
+    
+    vec2* subPixel = new vec2[MSAA4X];
+    
+    int Level = MSAA4X / 4;
+    
+    
+    
+    for(int i =0;i<Level;i++)
     {
-        
-        if(!enabelMerge && depthBuffer[(int)y*g_width + (int)x] < z)
-            return;
-        if(enabelMerge)
-            frame[(int)y*g_width + (int)x] = alphaMerge(frame[(int)y*g_width + (int)x], color);
-        else
-            frame[(int)y*g_width + (int)x] = color;
-        
-        if(depthBuffer[(int)y*g_width + (int)x] < z)
-            depthBuffer[(int)y*g_width + (int)x] = z;
-        
+        for(int index = 0;index<4;index++)
+        {
+            subPixel[index + i*4].x = p.x + MSAAPosMatrix[index].x * (i+1) * (float)WidthGapMSAA4X/2.0;
+            subPixel[index + i*4].y = p.y + MSAAPosMatrix[index].y * (i+1) * (float)HeightGapMSAA4X/2.0;
+        }
     }
+    
+    for(int i =0;i < MSAA4X;i++)
+        if(coordinate2frame(subPixel[i].x, subPixel[i].y))
+        {
+            
+            int x = subPixel[i].x;
+            int y = subPixel[i].y;
+            
+            
+            if(depthBuffer[y*NDC2FrameWidth + x] < z)
+                return;
+            if(enabelMerge)
+                frame[y*NDC2FrameWidth + x] = alphaMerge(frame[y*NDC2FrameWidth + x], color);
+            else
+                frame[y * NDC2FrameWidth + x] = color;
+            
+//            if(depthBuffer[y*NDC2FrameWidth + x] < z)
+                depthBuffer[y*NDC2FrameWidth + x] = z;
+            
+        }
+}
+
+void present()
+{
+    
+    char filename[50];
+    //    sprintf(filename,"EiRasDepth.ppm");
+    FILE *f;
+    //    fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
+    //    for (int i=0; i< g_width * g_height; i++)
+    //        fprintf(f,"%d %d %d ", toInt(double(getDepthBuffer()[i])),toInt(double(getDepthBuffer()[i])), toInt(double(getDepthBuffer()[i])));
+    //    fclose(f);
+    
+    
+    sprintf(filename,"EiRas.ppm");
+    f = fopen(filename, "w");
+    fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
+    
+    
+    for (int y=0; y< g_height; y++)
+    {
+        for(int x =0;x<g_width;x++)
+        {
+            vec4 MixedColor = vec4(0,0,0,0);
+            
+            int Level = MSAA4X / 4;
+            
+            int sampledCount = 0;
+            
+            for(int i =0;i<Level;i++)
+            {
+                for(int index = 0;index < 4;index++)
+                {
+                    vec2* SampleMatrix;
+                    if(Level == 1)
+                        SampleMatrix = MSAA4XSampleMatrix;
+                    else
+                        SampleMatrix = MSAA16XSampleMatrix;
+                    
+                    if(sampleFrame(x * MSAASqrt + (int)(SampleMatrix[index].x)* (i+1), y * MSAASqrt + (int)(SampleMatrix[index].y) * (i+1), MixedColor))
+                        sampledCount ++;
+                }
+            }
+            if(sampledCount!=0)
+                MixedColor /= (float)sampledCount;
+            
+            fprintf(f,"%d %d %d ", toInt(MixedColor.r),toInt(MixedColor.g), toInt(MixedColor.b));
+            //            fprintf(f,"%d %d %d ", toInt(frame[y*NDC2FrameWidth +x].r),toInt(frame[y*NDC2FrameWidth +x].g), toInt(frame[y*NDC2FrameWidth +x].b));
+        }
+    }
+    
+    
+    //    for (int i=0; i< g_width*4 * g_height; i++)
+    //        fprintf(f,"%d %d %d ", toInt(getFrameBuffer()[i].r),toInt(getFrameBuffer()[i].g), toInt(getFrameBuffer()[i].b));
+    fclose(f);
+}
+
+bool sampleFrame(int x,int y,vec4 &Color)
+{
+    if(x >= 0 && y>=0 && x< NDC2FrameWidth && y< NDC2FrameHeight)
+    {
+        Color += frame[y * NDC2FrameWidth + x];
+        return true;
+    }
+    return false;
 }
 
 vec4 alphaMerge(vec4 _background, vec4 _foreground)
@@ -108,12 +215,12 @@ bool coordinate2frame(int &x, int &y)
 
 bool coordinate2frame(float &x, float &y)
 {
-    x = x * (float)g_width/2.0;
-    y = -y * (float)g_height/2.0;
-    x += g_width/2.0;
-    y += g_height/2.0;
+    x = x * (float)NDC2FrameWidth/2.0;
+    y = -y * (float)NDC2FrameHeight/2.0;
+    x += (float)NDC2FrameWidth/2.0;
+    y += (float)NDC2FrameHeight/2.0;
     
-    if(x >= 0 && y>=0 && x<g_width && y<g_height)
+    if(x >= 0 && y>=0 && x< NDC2FrameWidth && y< NDC2FrameHeight)
     {
         return true;
     }
@@ -134,7 +241,11 @@ float* getDepthBuffer()
 }
 
 
-
+void setCamera(EiCamera* Camera)
+{
+    mat4X4Camera = Camera->getCameraMatrix();
+    setProjMatrix(*Camera->getProjMatrix());
+}
 
 void setProjMatrix(matrix4X4 mat)
 {
@@ -144,21 +255,9 @@ void setProjMatrix(matrix4X4 mat)
 vec4 Ei_Proj(vec4 point)
 {
     point.a =1;
-    return matrix4X4::mul(mat4X4Proj, point);
+    vec3 pos = matrix4X4::mul(*mat4X4Camera, point);
+    return matrix4X4::mul(mat4X4Proj, pos);
 }
-
-void matMatrix44PerspectiveFovLH(matrix4X4 &mat, const float fov, const float aspect, const float ZNear, const float ZFar )
-{
-    const float fViewSpaceHeight = 1.0f / tanf( fov * 0.5f );
-    const float fViewSpaceWidth = fViewSpaceHeight / aspect ;
-    
-    mat.m11 = fViewSpaceWidth; mat.m12 = 0.0f; mat.m13 = 0.0f; mat.m14 = 0.0f;
-    mat.m21 = 0.0f; mat.m22 = fViewSpaceHeight; mat.m23 = 0.0f; mat.m24 = 0.0f;
-    mat.m31 = 0.0f; mat.m32 = 0.0f; mat.m33 = ZFar / ( ZFar - ZNear ); mat.m34 = -ZNear * ZFar / ( ZFar - ZNear );
-    mat.m41 = 0.0f; mat.m42 = 0.0f; mat.m43 = 1.0f; mat.m44 = 0.0f;
-}
-
-
 
 
 void setEiLight(EiLight* _EiLight)

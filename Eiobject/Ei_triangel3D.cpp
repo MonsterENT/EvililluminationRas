@@ -118,8 +118,6 @@ Ei_triangel3D::PixelShaderIn Ei_triangel3D::VertexLerpBottom(float y)
 }
 
 
-#define reduceY 1.0/(float)g_height
-#define reduceX 1.0/(float)g_width
 
 void Ei_triangel3D::draw()
 {

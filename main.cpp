@@ -16,6 +16,7 @@
 #include "Transform3D.hpp"
 #include "EiLight.hpp"
 #include "EiEffect.hpp"
+#include "EiCamrea.hpp"
 
 #define Zfar 100.0
 
@@ -37,8 +38,20 @@ int main(int argc, const char * argv[])
     
     // 设置透视矩阵
     matrix4X4 proj;
-    matMatrix44PerspectiveFovLH(proj, _PI/4.0, 3.0/4.0, Znear, Zfar);
-    setProjMatrix(proj);
+//    matMatrix44PerspectiveFovLH(proj, _PI/4.0, 1, Znear, Zfar);
+//    setProjMatrix(proj);
+    
+    EiCamera* Camera = new EiCamera(vec3(0,0,0),vec3(0,0,1),Znear,Zfar);
+//    Camera->RotateByUp(_PI/2.0);
+//    Camera->RotateByRight(_PI/18.0);
+//    Camera->RotateByForward(_PI/4.0);
+//    Camera->MoveRight(10);
+//    Camera->MoveUp(10);
+//    Camera->MoveForward(100);
+
+    
+
+    setCamera(Camera);
     
     
     // 2D 辅助线
@@ -163,25 +176,34 @@ int main(int argc, const char * argv[])
     //
     //    right2.draw();
     
+    matrix4X4 mat;
+    EiTransform3D::MatrixRotation3D(mat, vec3(0,0,1), vec3(0,0,200), -_PI/2.0);
+    
     
     Ei_triangel3D far2 = Ei_triangel3D(vec3(halfWidth,-halfHeight,200),vec3((halfWidth),+halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
-    far2.TexA = vec2(2,2);
-    far2.TexB = vec2(2,0);
+    far2.TexA = vec2(1,1);
+    far2.TexB = vec2(1,0);
     far2.TexC = vec2(0,0);
     far2.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
     
     
-    far2.draw();
+//    far2.draw();
     
     
     Ei_triangel3D far1 = Ei_triangel3D(vec3(-halfWidth,-halfHeight,200),vec3(halfWidth,-halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
-    far1.TexA = vec2(0,2);
-    far1.TexB = vec2(2,2);
+    far1.TexA = vec2(0,1);
+    far1.TexB = vec2(1,1);
     far1.TexC = vec2(0,0);
     far1.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
     
-    far1.draw();
+//    far1.draw();
     
+    
+    
+//    far2.MatrixTransform(mat);
+//    far1.MatrixTransform(mat);
+    far2.draw();
+    far1.draw();
     //    Ei_triangel3D far3 = Ei_triangel3D(vec3(halfWidth,-halfHeight,100),vec3((halfWidth),+halfHeight,100),vec3(-halfWidth,+halfHeight,100));//
     //    far3.TexA = vec2(1,1);
     //    far3.TexB = vec2(1,0);
@@ -223,31 +245,14 @@ int main(int argc, const char * argv[])
     
     disableAlphaMerge();
     
-    EiEffect* effectV = new EiEffect();
-    
-    vec4* frameBlur = effectV->EiEffect_FullScreenBlur(10, 5);
+//    EiEffect* effectV = new EiEffect();
+//    
+//    vec4* frameBlur =  getFrameBuffer();//effectV->EiEffect_FullScreenBlur(10, 5);
     
     
     // DepthView 和 RenderTargetView 写出至ppm文件
-    
-    char filename[50];
-    sprintf(filename,"EiRasDepth.ppm");
-    FILE *f = fopen(filename, "w");
-    fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
-    for (int i=0; i< g_width * g_height; i++)
-        fprintf(f,"%d %d %d ", toInt(double(getDepthBuffer()[i])),toInt(double(getDepthBuffer()[i])), toInt(double(getDepthBuffer()[i])));
-    fclose(f);
-    
-    
-    sprintf(filename,"EiRas.ppm");
-    f = fopen(filename, "w");
-    fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
-    
-    for (int i=0; i< g_width * g_height; i++)
-        fprintf(f,"%d %d %d ", toInt(frameBlur[i].r),toInt(frameBlur[i].g), toInt(frameBlur[i].b));
-    
-    
-    fclose(f);
+
+    present();
     
     return 0;
 }

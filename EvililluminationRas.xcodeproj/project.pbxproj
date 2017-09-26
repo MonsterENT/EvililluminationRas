@@ -37,6 +37,7 @@
 		C2431F971F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */; };
 		C2431F981F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */; };
 		C26B4ED51F6C02FD00315FA7 /* EiEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */; };
+		C27D7CD41F77E9890012742B /* EiCamrea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C27D7CD21F77E9890012742B /* EiCamrea.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,7 +67,6 @@
 		C235B55B1F41F65300C44779 /* Eiobject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eiobject.hpp; sourceTree = "<group>"; };
 		C235B55D1F41F65300C44779 /* EiRas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiRas.cpp; sourceTree = "<group>"; };
 		C235B55E1F41F65300C44779 /* EiRas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiRas.hpp; sourceTree = "<group>"; };
-		C235B55F1F41F65300C44779 /* EiRas.ppm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EiRas.ppm; sourceTree = "<group>"; };
 		C235B5611F41F65300C44779 /* EiTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiTexture2D.cpp; sourceTree = "<group>"; };
 		C235B5621F41F65300C44779 /* EiTexture2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiTexture2D.hpp; sourceTree = "<group>"; };
 		C235B5641F41F65300C44779 /* Transform2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform2D.cpp; sourceTree = "<group>"; };
@@ -98,6 +98,8 @@
 		C24CDF0E1F07B62C005CE82E /* EvililluminationRas */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvililluminationRas; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiEffect.cpp; path = EiEffect/EiEffect.cpp; sourceTree = "<group>"; };
 		C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiEffect.hpp; path = EiEffect/EiEffect.hpp; sourceTree = "<group>"; };
+		C27D7CD21F77E9890012742B /* EiCamrea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiCamrea.cpp; path = EiCamrea/EiCamrea.cpp; sourceTree = "<group>"; };
+		C27D7CD31F77E9890012742B /* EiCamrea.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiCamrea.hpp; path = EiCamrea/EiCamrea.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,8 +229,8 @@
 		C24CDF051F07B62C005CE82E = {
 			isa = PBXGroup;
 			children = (
+				C27D7CD11F77E94F0012742B /* EiCamera */,
 				C26B4ED21F6C02D200315FA7 /* Effect */,
-				C235B55F1F41F65300C44779 /* EiRas.ppm */,
 				C235B56D1F41F65300C44779 /* README.md */,
 				C235B5681F41F65300C44779 /* img */,
 				C235B54D1F41F65300C44779 /* EiLight */,
@@ -258,6 +260,15 @@
 				C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */,
 			);
 			name = Effect;
+			sourceTree = "<group>";
+		};
+		C27D7CD11F77E94F0012742B /* EiCamera */ = {
+			isa = PBXGroup;
+			children = (
+				C27D7CD21F77E9890012742B /* EiCamrea.cpp */,
+				C27D7CD31F77E9890012742B /* EiCamrea.hpp */,
+			);
+			name = EiCamera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				C235B5751F41F65300C44779 /* EiTexture2D.cpp in Sources */,
 				C235B5741F41F65300C44779 /* EiRas.cpp in Sources */,
 				C235B5761F41F65300C44779 /* Transform2D.cpp in Sources */,
+				C27D7CD41F77E9890012742B /* EiCamrea.cpp in Sources */,
 				C235B5711F41F65300C44779 /* Ei_triangel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

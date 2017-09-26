@@ -118,6 +118,13 @@ public:
             return false;
     }
     
+    void operator += (const vec3 _vec3)
+    {
+        this->x += _vec3.x;
+        this->y += _vec3.y;
+        this->z += _vec3.z;
+    }
+    
     vec3 operator*(float v) const
     {
         return vec3(x * v,y * v,z * v);
@@ -190,6 +197,13 @@ public:
         r += _vec4.r;
         g += _vec4.g;
         b += _vec4.b;
+    }
+    
+    void operator/=(float v)
+    {
+        r/=v;
+        g/=v;
+        b/=v;
     }
 };
 

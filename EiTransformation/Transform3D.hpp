@@ -25,34 +25,40 @@ public:
         _mat = matrix4X4::mul(Tmat, _mat);
     }
     
-    static void MatrixRotation3D(matrix4X4& _mat,const vec3 axis,const vec3 axisPoint,float angel)
+    static void MatrixRotation3D(matrix4X4& _mat,const vec3 _axis,const vec3 axisPoint,float angel)
     {
         matrix4X4 rotationAxis;
         
+        vec3 axis =  _axis.norm();
         
         vec3 axisOnZ_Y;
         vec3 axisXvec;
         vec3 axisYvec;
         
-        if(axis == vec3(1,0,0))
+        if(_axis == vec3(1,0,0))
         {
             axisYvec = vec3(0,1,0);
-            axisXvec = axisYvec.cross(axis);
+            axisXvec = axisYvec.cross(_axis);
         }
-        else if(axis.x < _ESP0X2)
+        else if( _axis == vec3(-1,0,0))
         {
-            axisOnZ_Y = axis;
-            axisXvec = vec3(1,0,0);
+            axisYvec = vec3(0,1,0);
+            axisXvec = vec3(0,0,-1);
+        }
+        else if(fabsf(_axis.x) < _ESP0X5)
+        {
+            axisOnZ_Y = _axis;
+            axisXvec = vec3(-1,0,0);
             axisYvec = axisXvec.cross(axisOnZ_Y);
         }
         else
         {
             axisOnZ_Y.x = 0;
-            axisOnZ_Y.y = axis.y;
-            axisOnZ_Y.z = axis.z;
+            axisOnZ_Y.y = _axis.y;
+            axisOnZ_Y.z = _axis.z;
             
-            axisXvec = axis.cross(axisOnZ_Y);
-            axisYvec = axisXvec.cross(axis);
+            axisYvec = _axis.cross(axisOnZ_Y);
+            axisXvec = axisYvec.cross(_axis);
         }
         
         
@@ -76,10 +82,6 @@ public:
         _matTranslation.m34 = -axisPoint.z;
         
         //旋转到标准坐标
-        
-        
-        
-        
         matrix4X4 _matRoationZ;
         
         _matRoationZ.m11 = cosf(angel);
