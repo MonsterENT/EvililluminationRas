@@ -1,23 +1,17 @@
 //
-//  EiCamrea.cpp
+//  EiCamera.cpp
 //  EvililluminationRas
 //
-//  Created by MonsterENT on 9/24/17.
-//  Copyright © 2017 Monster. All rights reserved.
+//  Created by yang on 2018/12/13.
+//  Copyright © 2018 Monster. All rights reserved.
 //
 
-#include "EiCamrea.hpp"
-#include "Transform3D.hpp"
+#include "EiCamera.hpp"
+#include "../EiMath/EiTransform3D.hpp"
 
-void matMatrix44PerspectiveFovLH(matrix4X4 &mat, const float fov, const float Aspect, const float ZNear, const float ZFar );
+void matMatrix44PerspectiveFovLH(matrix4X4 &mat, const float fov, const float aspect, const float ZNear, const float ZFar);
 
-
-
-
-
-
-
-EiCamera::EiCamera(vec3 pos,vec3 in_dir,float Z_near,float Z_far,float FocalLen,vec3 in_up)
+EiCamera::EiCamera(vec3 pos,vec3 in_dir, float Z_near, float Z_far, float FocalLen, vec3 in_up)
 {
     this->look = in_dir.norm();
     this->up = in_up;
@@ -25,7 +19,7 @@ EiCamera::EiCamera(vec3 pos,vec3 in_dir,float Z_near,float Z_far,float FocalLen,
     
     CameraPos = pos;
     //    v=2tan^{-1}(\frac{s}{2f} )，
-    float Fov = 2.0 * atanf(43.27/(2.0 * FocalLen));
+    float Fov = 2.0 * atanf(43.27 / (2.0 * FocalLen));
     matMatrix44PerspectiveFovLH(this->ProjMat,Fov, 1, Z_near, Z_far);
     
 }

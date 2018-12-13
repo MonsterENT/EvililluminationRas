@@ -9,13 +9,13 @@
 #ifndef Transform3D_hpp
 #define Transform3D_hpp
 
-#include "Eimath.h"
+#include "../EiMath/EiMath.hpp"
 
 
 class EiTransform3D
 {
 public:
-    static void MatrixTranslation3D(matrix4X4& _mat,vec3 offset)
+    static void MatrixTranslation3D(matrix4X4& _mat, vec3 offset)
     {
         matrix4X4 Tmat;
         Tmat.m14 = offset.x;
@@ -25,7 +25,7 @@ public:
         _mat = matrix4X4::mul(Tmat, _mat);
     }
     
-    static void MatrixRotation3D(matrix4X4& _mat,const vec3 _axis,const vec3 axisPoint,float angel)
+    static void MatrixRotation3D(matrix4X4& _mat, const vec3 _axis, const vec3 axisPoint, float angel)
     {
         matrix4X4 rotationAxis;
         
@@ -35,20 +35,20 @@ public:
         vec3 axisXvec;
         vec3 axisYvec;
         
-        if(_axis == vec3(1,0,0))
+        if(_axis == vec3(1, 0, 0))
         {
-            axisYvec = vec3(0,1,0);
+            axisYvec = vec3(0, 1, 0);
             axisXvec = axisYvec.cross(_axis);
         }
-        else if( _axis == vec3(-1,0,0))
+        else if( _axis == vec3(-1, 0, 0))
         {
-            axisYvec = vec3(0,1,0);
-            axisXvec = vec3(0,0,-1);
+            axisYvec = vec3(0, 1, 0);
+            axisXvec = vec3(0, 0, -1);
         }
         else if(fabsf(_axis.x) < _ESP0X5)
         {
             axisOnZ_Y = _axis;
-            axisXvec = vec3(-1,0,0);
+            axisXvec = vec3(-1, 0, 0);
             axisYvec = axisXvec.cross(axisOnZ_Y);
         }
         else
@@ -60,8 +60,6 @@ public:
             axisYvec = _axis.cross(axisOnZ_Y);
             axisXvec = axisYvec.cross(_axis);
         }
-        
-        
         
         rotationAxis.m11 = axisXvec.x;
         rotationAxis.m12 = axisXvec.y;
@@ -90,10 +88,9 @@ public:
         _matRoationZ.m21 = sinf(angel);
         _matRoationZ.m22 = cosf(angel);
         
-        matrix4X4 _matTemp = matrix4X4::mul(rotationAxis,_matTranslation);
+        matrix4X4 _matTemp = matrix4X4::mul(rotationAxis, _matTranslation);
         
         matrix4X4 _matFinal = matrix4X4::mul(_matRoationZ, _matTemp);
-        
         
         rotationAxis.transpose();
         

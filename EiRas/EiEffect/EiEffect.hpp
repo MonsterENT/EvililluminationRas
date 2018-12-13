@@ -9,31 +9,17 @@
 #ifndef EiEffect_hpp
 #define EiEffect_hpp
 
-#include "Eimath.h"
-#include "EiRas.hpp"
-
-
-
-
-
-
+#include "../EiMath/EiMath.hpp"
+#include "../EiRas.hpp"
 
 class EiEffect
 {
-    
-    
 public:
-    
-    EiEffect()
-    {
-    
-    }
-    
-    vec4* EiEffect_FullScreenBlur(int Radius,int blurtime);
+    vec4* EiEffect_FullScreenBlur(int Radius, int blurtime, EiRas* device);
 
     
 private:
-    vec4 getSrc(vec4* source,int x,int y);
+    vec4 getSrc(vec4* source,int x, int y);
     
 };
 

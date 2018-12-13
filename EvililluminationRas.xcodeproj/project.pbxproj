@@ -7,37 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C235B56E1F41F65300C44779 /* EiLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B54E1F41F65300C44779 /* EiLight.cpp */; };
-		C235B56F1F41F65300C44779 /* Eimath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5511F41F65300C44779 /* Eimath.cpp */; };
-		C235B5701F41F65300C44779 /* Ei_line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5541F41F65300C44779 /* Ei_line.cpp */; };
-		C235B5711F41F65300C44779 /* Ei_triangel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5561F41F65300C44779 /* Ei_triangel.cpp */; };
-		C235B5721F41F65300C44779 /* Ei_triangel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */; };
-		C235B5731F41F65300C44779 /* Eiobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B55A1F41F65300C44779 /* Eiobject.cpp */; };
-		C235B5741F41F65300C44779 /* EiRas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B55D1F41F65300C44779 /* EiRas.cpp */; };
-		C235B5751F41F65300C44779 /* EiTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5611F41F65300C44779 /* EiTexture2D.cpp */; };
-		C235B5761F41F65300C44779 /* Transform2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5641F41F65300C44779 /* Transform2D.cpp */; };
-		C235B5771F41F65300C44779 /* Transform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B5661F41F65300C44779 /* Transform3D.cpp */; };
 		C235B5781F41F65300C44779 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B56C1F41F65300C44779 /* main.cpp */; };
 		C235B5791F41F65300C44779 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C235B56D1F41F65300C44779 /* README.md */; };
-		C2431F881F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F771F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib */; };
-		C2431F891F3C3C6800190083 /* libopencv_core.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F781F3C3C6800190083 /* libopencv_core.3.3.0.dylib */; };
-		C2431F8A1F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F791F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib */; };
-		C2431F8B1F3C3C6800190083 /* libopencv_features2d.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7A1F3C3C6800190083 /* libopencv_features2d.3.3.0.dylib */; };
-		C2431F8C1F3C3C6800190083 /* libopencv_flann.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7B1F3C3C6800190083 /* libopencv_flann.3.3.0.dylib */; };
-		C2431F8D1F3C3C6800190083 /* libopencv_highgui.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7C1F3C3C6800190083 /* libopencv_highgui.3.3.0.dylib */; };
-		C2431F8E1F3C3C6800190083 /* libopencv_imgcodecs.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7D1F3C3C6800190083 /* libopencv_imgcodecs.3.3.0.dylib */; };
-		C2431F8F1F3C3C6800190083 /* libopencv_imgproc.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7E1F3C3C6800190083 /* libopencv_imgproc.3.3.0.dylib */; };
-		C2431F901F3C3C6800190083 /* libopencv_ml.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F7F1F3C3C6800190083 /* libopencv_ml.3.3.0.dylib */; };
-		C2431F911F3C3C6800190083 /* libopencv_objdetect.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F801F3C3C6800190083 /* libopencv_objdetect.3.3.0.dylib */; };
-		C2431F921F3C3C6800190083 /* libopencv_photo.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F811F3C3C6800190083 /* libopencv_photo.3.3.0.dylib */; };
-		C2431F931F3C3C6800190083 /* libopencv_shape.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F821F3C3C6800190083 /* libopencv_shape.3.3.0.dylib */; };
-		C2431F941F3C3C6800190083 /* libopencv_stitching.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F831F3C3C6800190083 /* libopencv_stitching.3.3.0.dylib */; };
-		C2431F951F3C3C6800190083 /* libopencv_superres.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F841F3C3C6800190083 /* libopencv_superres.3.3.0.dylib */; };
-		C2431F961F3C3C6800190083 /* libopencv_video.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */; };
-		C2431F971F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */; };
-		C2431F981F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */; };
-		C26B4ED51F6C02FD00315FA7 /* EiEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */; };
-		C27D7CD41F77E9890012742B /* EiCamrea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C27D7CD21F77E9890012742B /* EiCamrea.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,53 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C235B54E1F41F65300C44779 /* EiLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiLight.cpp; sourceTree = "<group>"; };
-		C235B54F1F41F65300C44779 /* EiLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiLight.hpp; sourceTree = "<group>"; };
-		C235B5511F41F65300C44779 /* Eimath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eimath.cpp; sourceTree = "<group>"; };
-		C235B5521F41F65300C44779 /* Eimath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eimath.h; sourceTree = "<group>"; };
-		C235B5541F41F65300C44779 /* Ei_line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_line.cpp; sourceTree = "<group>"; };
-		C235B5551F41F65300C44779 /* Ei_line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_line.hpp; sourceTree = "<group>"; };
-		C235B5561F41F65300C44779 /* Ei_triangel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_triangel.cpp; sourceTree = "<group>"; };
-		C235B5571F41F65300C44779 /* Ei_triangel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_triangel.hpp; sourceTree = "<group>"; };
-		C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ei_triangel3D.cpp; sourceTree = "<group>"; };
-		C235B5591F41F65300C44779 /* Ei_triangel3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ei_triangel3D.hpp; sourceTree = "<group>"; };
-		C235B55A1F41F65300C44779 /* Eiobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eiobject.cpp; sourceTree = "<group>"; };
-		C235B55B1F41F65300C44779 /* Eiobject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eiobject.hpp; sourceTree = "<group>"; };
-		C235B55D1F41F65300C44779 /* EiRas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiRas.cpp; sourceTree = "<group>"; };
-		C235B55E1F41F65300C44779 /* EiRas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiRas.hpp; sourceTree = "<group>"; };
-		C235B5611F41F65300C44779 /* EiTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiTexture2D.cpp; sourceTree = "<group>"; };
-		C235B5621F41F65300C44779 /* EiTexture2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EiTexture2D.hpp; sourceTree = "<group>"; };
-		C235B5641F41F65300C44779 /* Transform2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform2D.cpp; sourceTree = "<group>"; };
-		C235B5651F41F65300C44779 /* Transform2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform2D.hpp; sourceTree = "<group>"; };
-		C235B5661F41F65300C44779 /* Transform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform3D.cpp; sourceTree = "<group>"; };
-		C235B5671F41F65300C44779 /* Transform3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transform3D.hpp; sourceTree = "<group>"; };
+		2F0BFD7A21C25F1E0001AC57 /* EiRas */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EiRas; sourceTree = "<group>"; };
 		C235B5691F41F65300C44779 /* 02180049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02180049.jpg; sourceTree = "<group>"; };
 		C235B56A1F41F65300C44779 /* Ei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ei.png; sourceTree = "<group>"; };
 		C235B56B1F41F65300C44779 /* RT.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = RT.bmp; sourceTree = "<group>"; };
 		C235B56C1F41F65300C44779 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C235B56D1F41F65300C44779 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C2431F771F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_calib3d.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F781F3C3C6800190083 /* libopencv_core.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_core.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F791F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_dnn.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_dnn.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7A1F3C3C6800190083 /* libopencv_features2d.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_features2d.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_features2d.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7B1F3C3C6800190083 /* libopencv_flann.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_flann.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_flann.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7C1F3C3C6800190083 /* libopencv_highgui.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_highgui.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7D1F3C3C6800190083 /* libopencv_imgcodecs.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgcodecs.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_imgcodecs.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7E1F3C3C6800190083 /* libopencv_imgproc.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_imgproc.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F7F1F3C3C6800190083 /* libopencv_ml.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ml.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_ml.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F801F3C3C6800190083 /* libopencv_objdetect.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_objdetect.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F811F3C3C6800190083 /* libopencv_photo.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_photo.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_photo.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F821F3C3C6800190083 /* libopencv_shape.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_shape.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_shape.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F831F3C3C6800190083 /* libopencv_stitching.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_stitching.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_stitching.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F841F3C3C6800190083 /* libopencv_superres.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_superres.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_video.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videoio.3.3.0.dylib"; sourceTree = "<group>"; };
-		C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.3.3.0.dylib; path = "../../opencv-3.3.0/release/lib/libopencv_videostab.3.3.0.dylib"; sourceTree = "<group>"; };
 		C24CDF0E1F07B62C005CE82E /* EvililluminationRas */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvililluminationRas; sourceTree = BUILT_PRODUCTS_DIR; };
-		C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiEffect.cpp; path = EiEffect/EiEffect.cpp; sourceTree = "<group>"; };
-		C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiEffect.hpp; path = EiEffect/EiEffect.hpp; sourceTree = "<group>"; };
-		C27D7CD21F77E9890012742B /* EiCamrea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EiCamrea.cpp; path = EiCamrea/EiCamrea.cpp; sourceTree = "<group>"; };
-		C27D7CD31F77E9890012742B /* EiCamrea.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EiCamrea.hpp; path = EiCamrea/EiCamrea.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,91 +38,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2431F961F3C3C6800190083 /* libopencv_video.3.3.0.dylib in Frameworks */,
-				C2431F951F3C3C6800190083 /* libopencv_superres.3.3.0.dylib in Frameworks */,
-				C2431F911F3C3C6800190083 /* libopencv_objdetect.3.3.0.dylib in Frameworks */,
-				C2431F8E1F3C3C6800190083 /* libopencv_imgcodecs.3.3.0.dylib in Frameworks */,
-				C2431F8F1F3C3C6800190083 /* libopencv_imgproc.3.3.0.dylib in Frameworks */,
-				C2431F931F3C3C6800190083 /* libopencv_shape.3.3.0.dylib in Frameworks */,
-				C2431F901F3C3C6800190083 /* libopencv_ml.3.3.0.dylib in Frameworks */,
-				C2431F8B1F3C3C6800190083 /* libopencv_features2d.3.3.0.dylib in Frameworks */,
-				C2431F941F3C3C6800190083 /* libopencv_stitching.3.3.0.dylib in Frameworks */,
-				C2431F921F3C3C6800190083 /* libopencv_photo.3.3.0.dylib in Frameworks */,
-				C2431F981F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib in Frameworks */,
-				C2431F8D1F3C3C6800190083 /* libopencv_highgui.3.3.0.dylib in Frameworks */,
-				C2431F8A1F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib in Frameworks */,
-				C2431F891F3C3C6800190083 /* libopencv_core.3.3.0.dylib in Frameworks */,
-				C2431F8C1F3C3C6800190083 /* libopencv_flann.3.3.0.dylib in Frameworks */,
-				C2431F881F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib in Frameworks */,
-				C2431F971F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C235B54D1F41F65300C44779 /* EiLight */ = {
-			isa = PBXGroup;
-			children = (
-				C235B54E1F41F65300C44779 /* EiLight.cpp */,
-				C235B54F1F41F65300C44779 /* EiLight.hpp */,
-			);
-			path = EiLight;
-			sourceTree = "<group>";
-		};
-		C235B5501F41F65300C44779 /* Eimath */ = {
-			isa = PBXGroup;
-			children = (
-				C235B5511F41F65300C44779 /* Eimath.cpp */,
-				C235B5521F41F65300C44779 /* Eimath.h */,
-			);
-			path = Eimath;
-			sourceTree = "<group>";
-		};
-		C235B5531F41F65300C44779 /* Eiobject */ = {
-			isa = PBXGroup;
-			children = (
-				C235B5541F41F65300C44779 /* Ei_line.cpp */,
-				C235B5551F41F65300C44779 /* Ei_line.hpp */,
-				C235B5561F41F65300C44779 /* Ei_triangel.cpp */,
-				C235B5571F41F65300C44779 /* Ei_triangel.hpp */,
-				C235B5581F41F65300C44779 /* Ei_triangel3D.cpp */,
-				C235B5591F41F65300C44779 /* Ei_triangel3D.hpp */,
-				C235B55A1F41F65300C44779 /* Eiobject.cpp */,
-				C235B55B1F41F65300C44779 /* Eiobject.hpp */,
-			);
-			path = Eiobject;
-			sourceTree = "<group>";
-		};
-		C235B55C1F41F65300C44779 /* EiRas */ = {
-			isa = PBXGroup;
-			children = (
-				C235B55D1F41F65300C44779 /* EiRas.cpp */,
-				C235B55E1F41F65300C44779 /* EiRas.hpp */,
-			);
-			path = EiRas;
-			sourceTree = "<group>";
-		};
-		C235B5601F41F65300C44779 /* EiTexture2D */ = {
-			isa = PBXGroup;
-			children = (
-				C235B5611F41F65300C44779 /* EiTexture2D.cpp */,
-				C235B5621F41F65300C44779 /* EiTexture2D.hpp */,
-			);
-			path = EiTexture2D;
-			sourceTree = "<group>";
-		};
-		C235B5631F41F65300C44779 /* EiTransformation */ = {
-			isa = PBXGroup;
-			children = (
-				C235B5641F41F65300C44779 /* Transform2D.cpp */,
-				C235B5651F41F65300C44779 /* Transform2D.hpp */,
-				C235B5661F41F65300C44779 /* Transform3D.cpp */,
-				C235B5671F41F65300C44779 /* Transform3D.hpp */,
-			);
-			path = EiTransformation;
-			sourceTree = "<group>";
-		};
 		C235B5681F41F65300C44779 /* img */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,45 +54,13 @@
 			path = img;
 			sourceTree = "<group>";
 		};
-		C2431F761F3C3BC200190083 /* OpenCV */ = {
-			isa = PBXGroup;
-			children = (
-				C2431F771F3C3C6800190083 /* libopencv_calib3d.3.3.0.dylib */,
-				C2431F781F3C3C6800190083 /* libopencv_core.3.3.0.dylib */,
-				C2431F791F3C3C6800190083 /* libopencv_dnn.3.3.0.dylib */,
-				C2431F7A1F3C3C6800190083 /* libopencv_features2d.3.3.0.dylib */,
-				C2431F7B1F3C3C6800190083 /* libopencv_flann.3.3.0.dylib */,
-				C2431F7C1F3C3C6800190083 /* libopencv_highgui.3.3.0.dylib */,
-				C2431F7D1F3C3C6800190083 /* libopencv_imgcodecs.3.3.0.dylib */,
-				C2431F7E1F3C3C6800190083 /* libopencv_imgproc.3.3.0.dylib */,
-				C2431F7F1F3C3C6800190083 /* libopencv_ml.3.3.0.dylib */,
-				C2431F801F3C3C6800190083 /* libopencv_objdetect.3.3.0.dylib */,
-				C2431F811F3C3C6800190083 /* libopencv_photo.3.3.0.dylib */,
-				C2431F821F3C3C6800190083 /* libopencv_shape.3.3.0.dylib */,
-				C2431F831F3C3C6800190083 /* libopencv_stitching.3.3.0.dylib */,
-				C2431F841F3C3C6800190083 /* libopencv_superres.3.3.0.dylib */,
-				C2431F851F3C3C6800190083 /* libopencv_video.3.3.0.dylib */,
-				C2431F861F3C3C6800190083 /* libopencv_videoio.3.3.0.dylib */,
-				C2431F871F3C3C6800190083 /* libopencv_videostab.3.3.0.dylib */,
-			);
-			name = OpenCV;
-			sourceTree = "<group>";
-		};
 		C24CDF051F07B62C005CE82E = {
 			isa = PBXGroup;
 			children = (
-				C27D7CD11F77E94F0012742B /* EiCamera */,
-				C26B4ED21F6C02D200315FA7 /* Effect */,
+				2F0BFD7A21C25F1E0001AC57 /* EiRas */,
 				C235B56D1F41F65300C44779 /* README.md */,
-				C235B5681F41F65300C44779 /* img */,
-				C235B54D1F41F65300C44779 /* EiLight */,
-				C235B5501F41F65300C44779 /* Eimath */,
-				C235B5531F41F65300C44779 /* Eiobject */,
-				C235B55C1F41F65300C44779 /* EiRas */,
-				C235B5601F41F65300C44779 /* EiTexture2D */,
-				C235B5631F41F65300C44779 /* EiTransformation */,
 				C235B56C1F41F65300C44779 /* main.cpp */,
-				C2431F761F3C3BC200190083 /* OpenCV */,
+				C235B5681F41F65300C44779 /* img */,
 				C24CDF0F1F07B62C005CE82E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -251,24 +71,6 @@
 				C24CDF0E1F07B62C005CE82E /* EvililluminationRas */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C26B4ED21F6C02D200315FA7 /* Effect */ = {
-			isa = PBXGroup;
-			children = (
-				C26B4ED31F6C02FD00315FA7 /* EiEffect.cpp */,
-				C26B4ED41F6C02FD00315FA7 /* EiEffect.hpp */,
-			);
-			name = Effect;
-			sourceTree = "<group>";
-		};
-		C27D7CD11F77E94F0012742B /* EiCamera */ = {
-			isa = PBXGroup;
-			children = (
-				C27D7CD21F77E9890012742B /* EiCamrea.cpp */,
-				C27D7CD31F77E9890012742B /* EiCamrea.hpp */,
-			);
-			name = EiCamera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +104,7 @@
 				TargetAttributes = {
 					C24CDF0D1F07B62C005CE82E = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = MUMVBPQN64;
+						DevelopmentTeam = QY227AQ425;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -329,20 +131,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C235B5731F41F65300C44779 /* Eiobject.cpp in Sources */,
-				C235B5771F41F65300C44779 /* Transform3D.cpp in Sources */,
-				C235B5721F41F65300C44779 /* Ei_triangel3D.cpp in Sources */,
-				C235B5701F41F65300C44779 /* Ei_line.cpp in Sources */,
 				C235B5781F41F65300C44779 /* main.cpp in Sources */,
-				C26B4ED51F6C02FD00315FA7 /* EiEffect.cpp in Sources */,
-				C235B56E1F41F65300C44779 /* EiLight.cpp in Sources */,
 				C235B5791F41F65300C44779 /* README.md in Sources */,
-				C235B56F1F41F65300C44779 /* Eimath.cpp in Sources */,
-				C235B5751F41F65300C44779 /* EiTexture2D.cpp in Sources */,
-				C235B5741F41F65300C44779 /* EiRas.cpp in Sources */,
-				C235B5761F41F65300C44779 /* Transform2D.cpp in Sources */,
-				C27D7CD41F77E9890012742B /* EiCamrea.cpp in Sources */,
-				C235B5711F41F65300C44779 /* Ei_triangel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +235,7 @@
 		C24CDF161F07B62C005CE82E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = MUMVBPQN64;
+				DEVELOPMENT_TEAM = QY227AQ425;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -453,7 +243,7 @@
 		C24CDF171F07B62C005CE82E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = MUMVBPQN64;
+				DEVELOPMENT_TEAM = QY227AQ425;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

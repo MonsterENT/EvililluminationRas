@@ -9,14 +9,14 @@
 #include "EiEffect.hpp"
 
 
-vec4* EiEffect::EiEffect_FullScreenBlur(int Radius,int blurtime)
+vec4* EiEffect::EiEffect_FullScreenBlur(int Radius,int blurtime, EiRas* device)
 {
     vec4* frameBlur = new vec4[g_width*g_height];
     
     vec4* frameFinal = new vec4[g_width*g_height];
     
     
-    vec4* source = getFrameBuffer();
+    vec4* source = device->getFrameBuffer();
     
     for(int times=0;times <blurtime;times++)
     {

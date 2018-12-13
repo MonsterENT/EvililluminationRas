@@ -9,27 +9,23 @@
 #ifndef Transform2D_hpp
 #define Transform2D_hpp
 
-
-#include "Eimath.h"
-
+#include "../EiMath/EiMath.hpp"
 
 class EiTransform2D
 {
 public:
-    
-    static void Translation2D(vec2 &p,vec2 offset)
+    static void Translation2D(vec2 &p, vec2 offset)
     {
         p = p + offset;
     }
     
-    static void MatrixTranslation2D(matrix3X3 &_mat,vec2 offset)
+    static void MatrixTranslation2D(matrix3X3 &_mat, vec2 offset)
     {
         _mat.m13 += offset.x;
         _mat.m23 += offset.y;
     }
     
-    
-    static void Rotation2D(vec2 &p,vec2 point,float angel)
+    static void Rotation2D(vec2 &p, vec2 point, float angel)
     {
         vec2 temp_P = p - point;
         
@@ -41,11 +37,8 @@ public:
     }
     
     
-    static void MatrixRotation2D(matrix3X3 &_mat,vec2 point,float angel)
+    static void MatrixRotation2D(matrix3X3 &_mat, vec2 point, float angel)
     {
-        
-        
-        
         matrix3X3 matB;
         matB.m11 = cosf(angel);
         matB.m12 = -sinf(angel);
@@ -64,7 +57,7 @@ public:
         _mat = matrix3X3::mul(matB,_mat);
     }
     
-    static void MatrixScale2D(matrix3X3 &_mat,vec2 scaleOffset)
+    static void MatrixScale2D(matrix3X3 &_mat, vec2 scaleOffset)
     {
         matrix3X3 matB;
         matB.m11 = scaleOffset.x;

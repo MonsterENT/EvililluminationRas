@@ -8,15 +8,7 @@
 #include <iostream>
 #include <math.h>
 #include <stdlib.h>
-#include "Eimath.h"
-#include "EiRas.hpp"
-#include "Ei_line.hpp"
-#include "Ei_triangel.hpp"
-#include "Ei_triangel3D.hpp"
-#include "Transform3D.hpp"
-#include "EiLight.hpp"
-#include "EiEffect.hpp"
-#include "EiCamrea.hpp"
+#include "EiRas/EiRasHeaders.h"
 
 #define Zfar 100.0
 
@@ -26,22 +18,26 @@
 #define halfHeight 50.0
 
 
-vec4* source;
-vec4 getSrc(int x,int y);
+//vec4* source;
+//vec4 getSrc(int x,int y);
+
+EiRas* device = nullptr;
 
 int main(int argc, const char * argv[])
 {
-    // 初始化 EiRas
-    initEi();
     
-    enableAlphaMerge();
+//    EiTriangel* t = new EiTriangel(vec2(0,0),vec2(0,0),vec2(0,0));
+    // 初始化 EiRas
+//    initEi();
+    
+//    enableAlphaMerge();
     
     // 设置透视矩阵
-    matrix4X4 proj;
+//    matrix4X4 proj;
 //    matMatrix44PerspectiveFovLH(proj, _PI/4.0, 1, Znear, Zfar);
 //    setProjMatrix(proj);
     
-    EiCamera* Camera = new EiCamera(vec3(0,0,0),vec3(0,0,1),Znear,Zfar);
+//    EiCamera* Camera = new EiCamera(vec3(0,0,0),vec3(0,0,1),Znear,Zfar);
 //    Camera->RotateByUp(_PI/2.0);
 //    Camera->RotateByRight(_PI/18.0);
 //    Camera->RotateByForward(_PI/4.0);
@@ -51,21 +47,21 @@ int main(int argc, const char * argv[])
 
     
 
-    setCamera(Camera);
+//    setCamera(Camera);
     
     
-    // 2D 辅助线
-    Line line1 = Line(-800,0,800,0);
-    line1.color = vec4(1,1,1,1);
-    line1.width = 2;
-    line1.draw();
-    
-    Line line2 = Line(0,600,0,-600);
-    line2.color = vec4(1,1,1,1);
-    line2.width = 2;
-    line2.draw();
-    
-    
+//    // 2D 辅助线
+//    Line line1 = Line(-800,0,800,0);
+//    line1.color = vec4(1,1,1,1);
+//    line1.width = 2;
+//    line1.draw();
+//
+//    Line line2 = Line(0,600,0,-600);
+//    line2.color = vec4(1,1,1,1);
+//    line2.width = 2;
+//    line2.draw();
+//
+//
     
     // 设置顶点光照
     //    EiLight* g_light = new EiLight;
@@ -73,14 +69,14 @@ int main(int argc, const char * argv[])
     //    setEiLight(g_light);
     
     //
-    EiTexture2D* tex1 = new EiTexture2D("RT.bmp");
-    tex1->enableMipmap();
-    
-    EiTexture2D* texQP = new EiTexture2D("QP.png");
-    texQP->enableMipmap();
-    
-    EiTexture2D* tex2 = new EiTexture2D("02180049.jpg");
-    tex2->enableMipmap();
+//    EiTexture2D* tex1 = new EiTexture2D("RT.bmp");
+//    tex1->enableMipmap();
+//
+//    EiTexture2D* texQP = new EiTexture2D("QP.png");
+//    texQP->enableMipmap();
+//
+//    EiTexture2D* tex2 = new EiTexture2D("02180049.jpg");
+//    tex2->enableMipmap();
     // 场景构建
     
     //    Ei_triangel3D bottom1 = Ei_triangel3D(vec3(-halfWidth,-halfHeight,Znear+20),vec3(halfWidth,-halfHeight,Zfar+20),vec3(halfWidth,-halfHeight,Znear+20));
@@ -176,34 +172,34 @@ int main(int argc, const char * argv[])
     //
     //    right2.draw();
     
-    matrix4X4 mat;
-    EiTransform3D::MatrixRotation3D(mat, vec3(0,0,1), vec3(0,0,200), -_PI/2.0);
-    
-    
-    Ei_triangel3D far2 = Ei_triangel3D(vec3(halfWidth,-halfHeight,200),vec3((halfWidth),+halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
-    far2.TexA = vec2(1,1);
-    far2.TexB = vec2(1,0);
-    far2.TexC = vec2(0,0);
-    far2.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
-    
-    
+//    matrix4X4 mat;
+//    EiTransform3D::MatrixRotation3D(mat, vec3(0,0,1), vec3(0,0,200), -_PI/2.0);
+//
+//
+//    Ei_triangel3D far2 = Ei_triangel3D(vec3(halfWidth,-halfHeight,200),vec3((halfWidth),+halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
+//    far2.TexA = vec2(1,1);
+//    far2.TexB = vec2(1,0);
+//    far2.TexC = vec2(0,0);
+//    far2.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
+//
+//
+////    far2.draw();
+//
+//
+//    Ei_triangel3D far1 = Ei_triangel3D(vec3(-halfWidth,-halfHeight,200),vec3(halfWidth,-halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
+//    far1.TexA = vec2(0,1);
+//    far1.TexB = vec2(1,1);
+//    far1.TexC = vec2(0,0);
+//    far1.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
+//
+////    far1.draw();
+//
+//
+//
+////    far2.MatrixTransform(mat);
+////    far1.MatrixTransform(mat);
 //    far2.draw();
-    
-    
-    Ei_triangel3D far1 = Ei_triangel3D(vec3(-halfWidth,-halfHeight,200),vec3(halfWidth,-halfHeight,200),vec3(-halfWidth,+halfHeight,200));//
-    far1.TexA = vec2(0,1);
-    far1.TexB = vec2(1,1);
-    far1.TexC = vec2(0,0);
-    far1.setTexture2D(tex1,EiTexAddressingMode::AddressingMode_Warp,0);
-    
 //    far1.draw();
-    
-    
-    
-//    far2.MatrixTransform(mat);
-//    far1.MatrixTransform(mat);
-    far2.draw();
-    far1.draw();
     //    Ei_triangel3D far3 = Ei_triangel3D(vec3(halfWidth,-halfHeight,100),vec3((halfWidth),+halfHeight,100),vec3(-halfWidth,+halfHeight,100));//
     //    far3.TexA = vec2(1,1);
     //    far3.TexB = vec2(1,0);
@@ -243,7 +239,7 @@ int main(int argc, const char * argv[])
     //    top2.draw();
     //
     
-    disableAlphaMerge();
+//    disableAlphaMerge();
     
 //    EiEffect* effectV = new EiEffect();
 //    
@@ -252,7 +248,7 @@ int main(int argc, const char * argv[])
     
     // DepthView 和 RenderTargetView 写出至ppm文件
 
-    present();
+//    present();
     
     return 0;
 }

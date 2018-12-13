@@ -1,17 +1,15 @@
 //
-//  EiCamrea.hpp
+//  EiCamera.hpp
 //  EvililluminationRas
 //
-//  Created by MonsterENT on 9/24/17.
-//  Copyright © 2017 Monster. All rights reserved.
+//  Created by yang on 2018/12/13.
+//  Copyright © 2018 Monster. All rights reserved.
 //
 
-#ifndef EiCamrea_hpp
-#define EiCamrea_hpp
+#ifndef EiCamera_hpp
+#define EiCamera_hpp
 
-#include "Eimath.h"
-
-
+#include "../EiMath/EiMath.hpp"
 
 class EiCamera
 {
@@ -50,7 +48,4 @@ private:
 };
 
 
-
-
-
-#endif /* EiCamrea_hpp */
+#endif /* EiCamera_hpp */
