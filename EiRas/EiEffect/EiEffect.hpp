@@ -9,6 +9,7 @@
 #ifndef EiEffect_hpp
 #define EiEffect_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 #include "../EiRas.hpp"
 

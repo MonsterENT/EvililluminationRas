@@ -9,53 +9,99 @@
 #ifndef EiMath_hpp
 #define EiMath_hpp
 
-#define  _PI (3.1415926)
-#define  _ESP0X1 (1e-1)
-#define  _ESP0X2 (1e-2)
-#define  _ESP0X5 (1e-5)
-#define  _ESP0X10 (1e-10)
-
+#include "../EiMacro.h"
 #include <math.h>
 
 class vec2;
 class vec3;
 class vec4;
 
-inline double clamp(double x){
-    return x < 0 ? 0 : x > 1 ? 1 : x;
-}
+namespace EiMath_Q {
+    
+    template<typename T>void swap(T& a, T& b)
+    {
+        T tmp = b;
+        b = a;
+        a = tmp;
+    }
+    
+    typedef bool(EiQsortCompare)(const void* obj1, const void* obj2);
+    
+    inline bool EiQsortIntCompare(const void* obj1, const void* obj2)
+    {
+        if(*((int*)obj1) < *((int*)obj2))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    template<typename T> void _qSort(T* array, int left, int right, EiQsortCompare compareFunc)
+    {
+        if(left > right)
+        {
+            return;
+        }
+        
+        int mid = (right - left) / 2 + left;
+        
+        swap<T>(array[mid], array[right]);
+        
+        int count = left;
+        for(int i = left; i <= right; i++)
+        {
+            if(compareFunc(&array[i],&array[right]) && i != count)
+            {
+                swap<T>(array[i], array[count++]);
+            }
+        }
+        swap<T>(array[right], array[count]);
+        mid = count;
+        _qSort(array, left, mid - 1, compareFunc);
+        _qSort(array, mid + 1, right, compareFunc);
+    }
+    
+    template<typename T> void qSort(T* array, int len, EiQsortCompare compareFunc)
+    {
+        if(array && len > 0)
+        {
+            _qSort(array, 0, len - 1, compareFunc);
+        }
+    }
+    
+    inline double clamp(double x){
+        return x < 0 ? 0 : x > 1 ? 1 : x;
+    }
+    
+    inline int toInt(double x)
+    {
+        return int(pow(clamp(x), 1 / 2.2) * 255 + .5);
+    }
 
-inline int toInt(double x)
-{
-    return int(pow(clamp(x), 1 / 2.2) * 255 + .5);
-}
-
-void swap(void* a, void* b)
-{
-    void* tmp = b;
-    b = a;
-    a = tmp;
-}
-
-void swap(int a,int b)
-{
-    int tmp = b;
-    b = a;
-    a = tmp;
-}
-
-void swap(float a,float b)
-{
-    float tmp = b;
-    b = a;
-    a = tmp;
-}
-
-void swap(double a,double b)
-{
-    double tmp = b;
-    b = a;
-    a = tmp;
+    inline void swap(int& a,int& b)
+    {
+        int tmp = b;
+        b = a;
+        a = tmp;
+    }
+    
+    inline void swap(float& a,float& b)
+    {
+        float tmp = b;
+        b = a;
+        a = tmp;
+    }
+    
+    inline void swap(double& a,double& b)
+    {
+        double tmp = b;
+        b = a;
+        a = tmp;
+    }
+    
 }
 
 class vec2
@@ -71,7 +117,7 @@ public:
         y = _y;
     }
     
-    float getLength(vec2 p)
+    float getLength(const vec2 &p)
     {
         return sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
     }
@@ -98,7 +144,7 @@ public:
 class vec3
 {
 public:
-    float x,y,z;
+    float x, y, z;
     
     vec3()
     {
@@ -108,6 +154,7 @@ public:
     }
     
     vec3(const vec4& _vec4);
+    
     vec3(const vec3& _vec3);
     
     vec3(float _x,float _y,float _z)
@@ -139,7 +186,7 @@ public:
         }
     }
     
-    void operator += (const vec3 _vec3)
+    void operator+=(const vec3 _vec3)
     {
         this->x += _vec3.x;
         this->y += _vec3.y;
@@ -151,11 +198,11 @@ public:
         return vec3(x * v,y * v,z * v);
     }
     
-    float dot(vec3 _vec3) const
+    float dot(const vec3& _vec3) const
     {
-        return x*_vec3.x + y*_vec3.y + z*_vec3.z;
+        return x *_vec3.x + y * _vec3.y + z * _vec3.z;
     }
-    vec3 cross(const vec3 _vec3) const
+    vec3 cross(const vec3& _vec3) const
     {
         return vec3(-y * _vec3.z + z * _vec3.y, -z * _vec3.x + x * _vec3.z, -x * _vec3.y + y * _vec3.x);
     }
@@ -183,7 +230,13 @@ public:
         b = 0.0;
         a = 0.0;
     }
-    vec4(const vec3& _vec3);
+    vec4(const vec3& _vec3)
+    {
+        r = _vec3.x;
+        g = _vec3.y;
+        b = _vec3.z;
+        a = 1;
+    }
     
     vec4(float _r,float _g,float _b,float _a)
     {
@@ -257,7 +310,6 @@ public:
     
     static matrix3X3 mul(const matrix3X3& mat1,const matrix3X3& mat2)
     {
-        
         matrix3X3 mat3;
         mat3.m11 = mat1.m11 * mat2.m11 + mat1.m12 * mat2.m21 + mat1.m13 * mat2.m31;
         mat3.m12 = mat1.m11 * mat2.m12 + mat1.m12 * mat2.m22 + mat1.m13 * mat2.m32;
@@ -322,13 +374,13 @@ public:
     
     void transpose()
     {
-        swap(m12, m21);
-        swap(m13, m31);
-        swap(m14, m41);
+        EiMath_Q::swap(m12, m21);
+        EiMath_Q::swap(m13, m31);
+        EiMath_Q::swap(m14, m41);
         
-        swap(m23, m32);
-        swap(m42, m24);
-        swap(m43, m34);
+        EiMath_Q::swap(m23, m32);
+        EiMath_Q::swap(m42, m24);
+        EiMath_Q::swap(m43, m34);
     }
     
     static matrix4X4 mul(const matrix4X4& mat1,const matrix4X4& mat2)

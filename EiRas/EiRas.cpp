@@ -120,7 +120,7 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
 
 void EiRas::presentToFile(char* fileName)
 {
-    FILE* f = null;
+    FILE* f = NULL;
     f = fopen(fileName, "w");
     fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
     
@@ -154,12 +154,12 @@ void EiRas::presentToFile(char* fileName)
                     }
                 }
             }
-            if(sampledCount! = 0)
+            if(sampledCount != 0)
             {
                 MixedColor /= (float)sampledCount;
             }
             
-            fprintf(f,"%d %d %d ", toInt(MixedColor.r), toInt(MixedColor.g), toInt(MixedColor.b));
+            fprintf(f,"%d %d %d ", EiMath_Q::toInt(MixedColor.r), EiMath_Q::toInt(MixedColor.g), EiMath_Q::toInt(MixedColor.b));
         }
     }
     fclose(f);

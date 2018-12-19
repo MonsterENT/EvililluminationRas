@@ -9,7 +9,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include "EiRas/EiRasHeaders.h"
-
 #define Zfar 100.0
 
 #define Znear 1
@@ -21,11 +20,9 @@
 //vec4* source;
 //vec4 getSrc(int x,int y);
 
-EiRas* device = nullptr;
-
+//EiRas* device = nullptr;
 int main(int argc, const char * argv[])
 {
-    
 //    EiTriangel* t = new EiTriangel(vec2(0,0),vec2(0,0),vec2(0,0));
     // 初始化 EiRas
 //    initEi();

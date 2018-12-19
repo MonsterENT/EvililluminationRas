@@ -9,8 +9,8 @@
 #ifndef Transform3D_hpp
 #define Transform3D_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
-
 
 class EiTransform3D
 {

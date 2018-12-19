@@ -7,3 +7,17 @@
 //
 
 #include "EiMath.hpp"
+
+vec3::vec3(const vec4& _vec4)
+{
+    x = _vec4.r;
+    y = _vec4.g;
+    z = _vec4.b;
+}
+
+vec3::vec3(const vec3& _vec3)
+{
+    x = _vec3.x;
+    y = _vec3.y;
+    z = _vec3.z;
+}

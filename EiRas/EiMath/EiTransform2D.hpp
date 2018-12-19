@@ -9,6 +9,7 @@
 #ifndef Transform2D_hpp
 #define Transform2D_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 
 class EiTransform2D

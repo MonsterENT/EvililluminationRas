@@ -9,6 +9,7 @@
 #ifndef EiPrimitive_hpp
 #define EiPrimitive_hpp
 
+#include "../EiMacro.h"
 #include "../EiRas.hpp"
 
 class EiPrimitive

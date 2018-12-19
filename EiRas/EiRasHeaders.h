@@ -13,12 +13,12 @@
 #include "EiRas.hpp"
 #include "EiMath/EiMath.hpp"
 #include "EiCamera/EiCamera.hpp"
-#include "EiTexture2D/EiTexture2D.hpp"
+#include "EiTexture/EiTexture2D.hpp"
 #include "EiMath/EiTransform2D.hpp"
 #include "EiMath/EiTransform3D.hpp"
 #include "EiEffect/EiEffect.hpp"
 #include "EiPrimitive/EiPrimitive.hpp"
 #include "EiPrimitive/EiLine.hpp"
-//#include "EiPrimitive/EiTriangel.hpp"
+#include "EiPrimitive/EiTriangel2D.hpp"
 
 #endif /* EiRasHeaders_h */

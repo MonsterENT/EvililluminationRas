@@ -9,6 +9,7 @@
 #ifndef EiLine_hpp
 #define EiLine_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 #include "EiPrimitive.hpp"
 

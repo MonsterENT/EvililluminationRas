@@ -9,6 +9,12 @@
 #ifndef EiMacro_h
 #define EiMacro_h
 
+#define  _PI (3.1415926)
+#define  _ESP0X1 (1e-1)
+#define  _ESP0X2 (1e-2)
+#define  _ESP0X5 (1e-5)
+#define  _ESP0X10 (1e-10)
+
 #define g_width (800)
 #define g_height (600)
 
@@ -24,5 +30,9 @@
 
 #define WidthGapMSAA4X (1.0f / (float)(NDC2FrameWidth))
 #define HeightGapMSAA4X (1.0f / (float)(NDC2FrameHeight))
+
+#ifndef MAXFLOAT
+#define MAXFLOAT 0x1.fffffep+127f
+#endif
 
 #endif /* EiMacro_h */

@@ -9,6 +9,7 @@
 #ifndef EiTexture2D_hpp
 #define EiTexture2D_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 #include <string>
 #include <vector>

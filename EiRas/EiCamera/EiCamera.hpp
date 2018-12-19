@@ -9,6 +9,7 @@
 #ifndef EiCamera_hpp
 #define EiCamera_hpp
 
+#include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 
 class EiCamera
