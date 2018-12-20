@@ -9,35 +9,42 @@
 #include "EiRas.hpp"
 #include <stdio.h>
 
-vec2 MSAAPosMatrix[]= {
+const vec2 MSAAPosMatrix[]= {
     vec2(-1 , -1), vec2(1 , -1),
     vec2(-1 , +1), vec2(+1 , +1)
 };
 
-vec2 MSAA16XSampleMatrix[]= {
+const vec2 MSAA16XSampleMatrix[]= {
     vec2(-1 , -1), vec2(1, -1),
     vec2(-1 , +1), vec2(+1 , +1)
 };
-vec2 MSAA4XSampleMatrix[]= {
+
+const vec2 MSAA4XSampleMatrix[]= {
     vec2(0 , 0), vec2(1 , 0),
     vec2(0 , +1), vec2(+1 , +1)
 };
 
-void EiRas::initEi()
+vec2_Int frameSize;
+vec2 dxy;
+
+void EiRas::initEi(vec2_Int _frameSize)
 {
     enabelMerge = true;
     
-    frame = new vec4[g_width * g_height * MSAA4X];
-    depthBuffer = new float[g_width * MSAA4X * g_height];
+    frameSize = _frameSize;
+    dxy = vec2(1.f / (float)frameSize.x, 1.f / (float)frameSize.y);
     
-    for(int i = 0; i < g_width * g_height * MSAA4X; i++)
+    frame = new vec4[frameSize.x * frameSize.y * MSAA4X];
+    depthBuffer = new float[frameSize.x * MSAA4X * frameSize.y];
+    
+    for(int i = 0; i < frameSize.x * frameSize.y * MSAA4X; i++)
     {
         depthBuffer[i] = MAXFLOAT;
     }
     
     MSAASqrt = sqrt(MSAA4X);
-    NDC2FrameWidth = g_width * MSAASqrt;
-    NDC2FrameHeight = g_height * MSAASqrt;
+    NDC2FrameWidth = frameSize.x * MSAASqrt;
+    NDC2FrameHeight = frameSize.y * MSAASqrt;
 }
 
 
@@ -48,11 +55,11 @@ void EiRas::setPixel(int x,int y,vec4 color)
     {
         if(enabelMerge)
         {
-            frame[y * g_width + x] = alphaMerge(frame[y * g_width + x], color);
+            frame[y * getFrameSize().x + x] = alphaMerge(frame[y * getFrameSize().x + x], color);
         }
         else
         {
-            frame[y * g_width + x] = color;
+            frame[y * getFrameSize().x + x] = color;
         }
     }
 }
@@ -110,11 +117,11 @@ void EiRas::presentToFile(const char* fileName)
 {
     FILE* f = NULL;
     f = fopen(fileName, "w");
-    fprintf(f, "P3\n%d %d\n%d\n", g_width, g_height, 255);
+    fprintf(f, "P3\n%d %d\n%d\n", getFrameSize().x, getFrameSize().y, 255);
     
-    for(int y = 0; y < g_height; y++)
+    for(int y = 0; y < getFrameSize().y; y++)
     {
-        for(int x = 0; x < g_width; x++)
+        for(int x = 0; x < getFrameSize().x; x++)
         {
             vec4 MixedColor = vec4(0, 0, 0, 0);
             
@@ -126,7 +133,7 @@ void EiRas::presentToFile(const char* fileName)
             {
                 for(int index = 0; index < 4; index++)
                 {
-                    vec2* SampleMatrix;
+                    const vec2* SampleMatrix;
                     if(Level == 1)
                     {
                         SampleMatrix = MSAA4XSampleMatrix;

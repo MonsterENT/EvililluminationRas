@@ -55,7 +55,7 @@ public:
         
         matB = matrix3X3::mul(matB, matC);
         
-        _mat = matrix3X3::mul(matB,_mat);
+        _mat = matrix3X3::mul(matB, _mat);
     }
     
     static void MatrixScale2D(matrix3X3 &_mat, vec2 scaleOffset)

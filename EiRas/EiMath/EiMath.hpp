@@ -82,6 +82,18 @@ namespace EiMath_Q {
     }
 }
 
+class vec2_Int
+{
+public:
+    int x;
+    int y;
+    vec2_Int(int _x = 0, int _y = 0)
+    {
+        x = _x;
+        y = _y;
+    }
+};
+
 class vec2
 {
 public:
@@ -94,6 +106,8 @@ public:
         x = _x;
         y = _y;
     }
+    
+    vec2(const vec3& _vec3);
     
     float getLength(const vec2 &p)
     {
@@ -135,7 +149,9 @@ public:
     
     vec3(const vec3& _vec3);
     
-    vec3(float _x,float _y,float _z)
+    vec3(const vec2& _vec2, float _z);
+    
+    vec3(float _x, float _y, float _z)
     {
         x = _x;
         y = _y;
@@ -259,7 +275,43 @@ public:
     }
 };
 
-
+class matrix2X2
+{
+public:
+    float m11,m12;
+    float m21,m22;
+    
+    matrix2X2()
+    {
+        m11 = 1;
+        m12 = 0;
+        
+        m21 = 0;
+        m22 = 1;
+    }
+    
+    static matrix2X2 mul(const matrix2X2& mat1,const matrix2X2& mat2)
+    {
+        matrix2X2 mat3;
+        mat3.m11 = mat1.m11 * mat2.m11 + mat1.m12 * mat2.m21;
+        mat3.m12 = mat1.m11 * mat2.m12 + mat1.m12 * mat2.m22;
+        
+        mat3.m21 = mat1.m21 * mat2.m11 + mat1.m22 * mat2.m21;
+        mat3.m22 = mat1.m21 * mat2.m12 + mat1.m22 * mat2.m22;
+        
+        return mat3;
+    }
+    
+    static vec2 mul(const matrix2X2& mat,const vec2& vec)
+    {
+        vec2 bVec;
+        
+        bVec.x = mat.m11 * vec.x + mat.m12 * vec.y;
+        bVec.y = mat.m21 * vec.x + mat.m22 * vec.y;
+        
+        return bVec;
+    }
+};
 
 class matrix3X3
 {
@@ -272,17 +324,17 @@ public:
     
     matrix3X3()
     {
-        m11 =1;
-        m12 =0;
-        m13 =0;
+        m11 = 1;
+        m12 = 0;
+        m13 = 0;
         
-        m21 =0;
-        m22 =1;
-        m23 =0;
+        m21 = 0;
+        m22 = 1;
+        m23 = 0;
         
-        m31 =0;
-        m32 =0;
-        m33 =1;
+        m31 = 0;
+        m32 = 0;
+        m33 = 1;
     }
     
     
@@ -314,8 +366,6 @@ public:
         
         return bVec;
     }
-    
-    
 };
 
 class matrix4X4

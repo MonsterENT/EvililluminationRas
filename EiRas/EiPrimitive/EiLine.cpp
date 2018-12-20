@@ -36,10 +36,10 @@ EiLine::EiLine(vec2 _p1, vec2 _p2)
         steps = fabs(p2.x - p1.x);
     }
     
-    stepGap = reduceX;
+    stepGap = EiRas::getFrameDxy().x;
     if(k > 0)
     {
-        stepGap = reduceY;
+        stepGap = EiRas::getFrameDxy().y;
     }
     
     xIncrement = (p2.x - p1.x) / steps * stepGap;
@@ -59,14 +59,14 @@ void EiLine::draw(EiRas* device)
         {
             if(k > 1)
             {
-                for(float i = -width / 2.0; i <= width / 2.0; i += reduceX)
+                for(float i = -width / 2.0; i <= width / 2.0; i += EiRas::getFrameDxy().x)
                 {
                     device->setPixelWithDepthTest(vec2(pos.x + i, pos.y), 0, color);
                 }
             }
             else
             {
-                for(float i = -width / 2.0; i <= width / 2.0; i += reduceX)
+                for(float i = -width / 2.0; i <= width / 2.0; i += EiRas::getFrameDxy().x)
                 {
                     device->setPixelWithDepthTest(vec2(pos.x, pos.y + i), 0, color);
                 }

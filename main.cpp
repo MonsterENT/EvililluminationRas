@@ -26,7 +26,7 @@ int main(int argc, const char * argv[])
     
     device = new EiRas;
     
-    device->initEi();
+    device->initEi(vec2_Int(4096, 2160));
     
     EiTriangel2D* triangel = new EiTriangel2D(vec2(0, 0), vec2(1, 1), vec2(-1, 1));
     triangel->colorA = ColorRed;

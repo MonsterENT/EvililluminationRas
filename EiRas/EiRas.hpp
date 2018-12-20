@@ -12,13 +12,15 @@
 #include "EiMacro.h"
 #include "EiMath/EiMath.hpp"
 
+extern vec2_Int frameSize;
+extern vec2 dxy;
+
 class EiRas
 {
 public:
-    
     bool enabelMerge;
     
-    void initEi();
+    void initEi(vec2_Int frameSize);
     
     void setPixel(int x, int y, vec4 color);
     void setPixel(vec2 p, vec4 color);
@@ -35,6 +37,16 @@ public:
     vec4 alphaMerge(vec4 _background, vec4 _foreground);
     
     bool sampleFrame(int x,int y,vec4 &Color);
+    
+    static vec2_Int getFrameSize()
+    {
+        return frameSize;
+    }
+    
+    static vec2 getFrameDxy()
+    {
+        return dxy;
+    }
     
 private:
     vec4* frame =  nullptr;
