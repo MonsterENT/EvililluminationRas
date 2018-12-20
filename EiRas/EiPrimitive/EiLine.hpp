@@ -25,13 +25,13 @@ public:
     }
     
     void draw(EiRas* device);
-
+    float width;
+    vec4 color;
 private:
     vec2 p1,p2;
-    vec4 color;
     float k;
-    float width;
     float xIncrement,yIncrement;
-    int steps;
+    float steps;
+    float stepGap;
 };
 #endif /* EiLine_hpp */

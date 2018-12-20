@@ -80,28 +80,6 @@ namespace EiMath_Q {
     {
         return int(pow(clamp(x), 1 / 2.2) * 255 + .5);
     }
-
-    inline void swap(int& a,int& b)
-    {
-        int tmp = b;
-        b = a;
-        a = tmp;
-    }
-    
-    inline void swap(float& a,float& b)
-    {
-        float tmp = b;
-        b = a;
-        a = tmp;
-    }
-    
-    inline void swap(double& a,double& b)
-    {
-        double tmp = b;
-        b = a;
-        a = tmp;
-    }
-    
 }
 
 class vec2

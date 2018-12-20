@@ -23,12 +23,9 @@ vec2 MSAA4XSampleMatrix[]= {
     vec2(0 , +1), vec2(+1 , +1)
 };
 
-int NDC2FrameWidth,NDC2FrameHeight;
-int MSAASqrt;
-
 void EiRas::initEi()
 {
-    enabelMerge = false;
+    enabelMerge = true;
     
     frame = new vec4[g_width * g_height * MSAA4X];
     depthBuffer = new float[g_width * MSAA4X * g_height];
@@ -65,13 +62,7 @@ void EiRas::setPixel(vec2 p,vec4 color)
     int x = p.x;
     int y = p.y;
     
-    if(coordinate2frame(x, y))
-    {
-        if(enabelMerge)
-            frame[y * g_width + x] = alphaMerge(frame[y * g_width + x], color);
-        else
-            frame[y * g_width + x] = color;
-    }
+    setPixel(x, y, color);
 }
 
 void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
@@ -79,19 +70,17 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
     vec2* subPixel = new vec2[MSAA4X];
     
     int Level = MSAA4X / 4;
-    
-    
-    
-    for(int i =0;i<Level;i++)
+
+    for(int i = 0; i < Level; i++)
     {
-        for(int index = 0;index<4;index++)
+        for(int index = 0; index < 4; index++)
         {
             subPixel[index + i * 4].x = p.x + MSAAPosMatrix[index].x * (i + 1) * (float)WidthGapMSAA4X / 2.0;
             subPixel[index + i * 4].y = p.y + MSAAPosMatrix[index].y * (i + 1) * (float)HeightGapMSAA4X / 2.0;
         }
     }
     
-    for(int i =0;i < MSAA4X;i++)
+    for(int i = 0; i < MSAA4X; i++)
     {
         if(coordinate2frame(subPixel[i].x, subPixel[i].y))
         {
@@ -100,8 +89,11 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             
             if(depthBuffer[y * NDC2FrameWidth + x] < z)
             {
-                return;
+                continue;
             }
+            
+            depthBuffer[y * NDC2FrameWidth + x] = z;
+            
             if(enabelMerge)
             {
                 frame[y * NDC2FrameWidth + x] = alphaMerge(frame[y * NDC2FrameWidth + x], color);
@@ -110,15 +102,11 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             {
                 frame[y * NDC2FrameWidth + x] = color;
             }
-            
-            //            if(depthBuffer[y*NDC2FrameWidth + x] < z)
-            depthBuffer[y * NDC2FrameWidth + x] = z;
-            
         }
     }
 }
 
-void EiRas::presentToFile(char* fileName)
+void EiRas::presentToFile(const char* fileName)
 {
     FILE* f = NULL;
     f = fopen(fileName, "w");
@@ -188,11 +176,12 @@ vec4 EiRas::alphaMerge(vec4 _background, vec4 _foreground)
 
 bool EiRas::coordinate2frame(int &x, int &y)
 {
-    y = -y;
-    x += g_width / 2;
-    y += g_height / 2;
+    x = x * (float)NDC2FrameWidth / 2.0;
+    y = -y * (float)NDC2FrameHeight / 2.0;
+    x += (float)NDC2FrameWidth / 2.0;
+    y += (float)NDC2FrameHeight / 2.0;
     
-    if(x >= 0 && y >= 0 && x < g_width && y < g_height)
+    if(x >= 0 && y >= 0 && x < NDC2FrameWidth && y < NDC2FrameHeight)
     {
         return true;
     }
@@ -213,7 +202,6 @@ bool EiRas::coordinate2frame(float &x, float &y)
     return false;
 }
 
-
 vec4* EiRas::getFrameBuffer()
 {
     return frame;
@@ -222,26 +210,4 @@ vec4* EiRas::getFrameBuffer()
 float* EiRas::getDepthBuffer()
 {
     return depthBuffer;
-}
-
-
-void EiRas::setProjMatrix(matrix4X4 mat)
-{
-    mat4X4Proj = mat;
-}
-
-vec4 EiRas::Ei_Proj(vec4 point)
-{
-    point.a = 1;
-    vec3 pos = matrix4X4::mul(*mat4X4Camera, point);
-    return matrix4X4::mul(mat4X4Proj, pos);
-}
-
-void EiRas::enableAlphaMerge()
-{
-    enabelMerge = true;
-}
-void EiRas::disableAlphaMerge()
-{
-    enabelMerge = false;
 }

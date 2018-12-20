@@ -20,7 +20,7 @@ public:
 
     
 private:
-    vec4 getSrc(vec4* source,int x, int y);
+    vec4 getSrc(vec4* source, int x, int y);
     
 };
 

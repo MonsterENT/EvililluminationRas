@@ -20,9 +20,35 @@
 //vec4* source;
 //vec4 getSrc(int x,int y);
 
-//EiRas* device = nullptr;
+EiRas* device = nullptr;
 int main(int argc, const char * argv[])
 {
+    
+    device = new EiRas;
+    
+    device->initEi();
+    
+    EiTriangel2D* triangel = new EiTriangel2D(vec2(0, 0), vec2(1, 1), vec2(-1, 1));
+    triangel->colorA = ColorRed;
+    triangel->colorB = ColorBlue;
+    triangel->colorC = ColorGreen;
+    triangel->draw(device);
+    
+    EiLine* lineH = new EiLine(vec2(-1, 0), vec2(1, 0));
+    lineH->width = 0.01f;
+    lineH->draw(device);
+    
+    EiLine* lineV = new EiLine(vec2(0, 1), vec2(0, -1));
+    lineV->width = 0.01f;
+    lineV->draw(device);
+    
+    EiLine* lineF2 = new EiLine(vec2(-0.5, 0.5), vec2(0.5, -0.5));
+    lineF2->width = 0.001f;
+//    lineF2->color = ColorBlue;
+    lineF2->draw(device);
+    
+    const char* fileName = "OutPutFile.ppm";
+    device->presentToFile(fileName);
 //    EiTriangel* t = new EiTriangel(vec2(0,0),vec2(0,0),vec2(0,0));
     // 初始化 EiRas
 //    initEi();

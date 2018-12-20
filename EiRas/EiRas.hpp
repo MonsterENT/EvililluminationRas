@@ -15,10 +15,8 @@
 class EiRas
 {
 public:
-    EiRas()
-    {
-        
-    }
+    
+    bool enabelMerge;
     
     void initEi();
     
@@ -26,19 +24,13 @@ public:
     void setPixel(vec2 p, vec4 color);
     void setPixelWithDepthTest(vec2 p, float z, vec4 color);
     
-    void presentToFile(char* fileName);
+    void presentToFile(const char* fileName);
     
     bool coordinate2frame(int &x, int &y);
     bool coordinate2frame(float &x, float &y);
     
     vec4* getFrameBuffer();
     float* getDepthBuffer();
-    
-    void setProjMatrix(matrix4X4 mat);
-    vec4 Ei_Proj(vec4 point);
-    
-    void enableAlphaMerge();
-    void disableAlphaMerge();
     
     vec4 alphaMerge(vec4 _background, vec4 _foreground);
     
@@ -52,7 +44,8 @@ private:
     matrix4X4 mat4X4Proj;
     matrix4X4 *mat4X4Camera;
     
-    bool enabelMerge;
+    int NDC2FrameWidth,NDC2FrameHeight;
+    int MSAASqrt;
 };
 
 #endif /* EiRas_hpp */

@@ -31,7 +31,7 @@ EiTriangel2D::EiTriangel2D(vec2 _pA,vec2 _pB,vec2 _pC)
 
 void EiTriangel2D::MatrixTransform(const matrix3X3& mat)
 {
-    matrix3X3::mul(mat, vec3(pA.x,pA.y,1));
+//    matrix3X3::mul(mat, vec3(pA.x,pA.y,1));
 //    matrix3X3::mul(mat, vec3(pB.x,pB.y,1));
 //    matrix3X3::mul(mat, vec3(pC.x,pC.y,1));
 //
@@ -43,7 +43,7 @@ void EiTriangel2D::draw(EiRas* device)
     if((!flag_0 && !flag_1) || flag_0)
     {
         //上半部分
-        for(int y = pointLine[0].y; y >= pM.y; y--)
+        for(float y = pointLine[0].y; y >= pM.y; y -= reduceY)
         {
             float start, end;
             
@@ -64,7 +64,7 @@ void EiTriangel2D::draw(EiRas* device)
                 end = (y - b_p0_p2) / k_p0_p2;
             }
             this->chageStartEnd(start, end);
-            for(int x = start;x<end;x++)
+            for(float x = start; x < end; x += reduceX)
             {
                 device->setPixel(vec2(x,y), lerpColor(vec2(x,y)));
             }
@@ -73,7 +73,7 @@ void EiTriangel2D::draw(EiRas* device)
     if((!flag_0 && !flag_1) || flag_1)
     {
         //下半部分
-        for(int y = pM.y; y >= pointLine[2].y; y--)
+        for(float y = pM.y; y >= pointLine[2].y; y -= reduceY)
         {
             float start, end;
             if(Max_k_p2_p1 == true)
@@ -94,9 +94,9 @@ void EiTriangel2D::draw(EiRas* device)
                 end = (y - b_p0_p2) / k_p0_p2;
             }
             this->chageStartEnd(start, end);
-            for(int x = start; x < end; x++)
+            for(float x = start; x < end; x += reduceX)
             {
-                device->setPixel(vec2(x, y), lerpColor(vec2(x, y)));
+                device->setPixelWithDepthTest(vec2(x, y), 0, lerpColor(vec2(x, y)));
             }
         }
     }

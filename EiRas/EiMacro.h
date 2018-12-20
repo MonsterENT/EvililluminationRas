@@ -23,7 +23,7 @@
 #define ColorBlue vec4(0, 0, 1, 1);
 #define ColorGray(x) vec4(x, x, x, 1)
 
-#define MSAA4X (16)
+#define MSAA4X (4)
 
 #define reduceY (1.0f / (float)g_height)
 #define reduceX (1.0f / (float)g_width)
