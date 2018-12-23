@@ -24,7 +24,15 @@ public:
         
     }
     
-    void draw(EiRas* device);
+    int hashCode()
+    {
+        int ret = p1.hashCode();
+        ret = 31 * ret + p2.hashCode();
+        ret = 31 * ret + width;
+        ret = 31 * color.hashCode();
+        return ret;
+    }
+    
     float width;
     vec4 color;
 private:
@@ -33,5 +41,7 @@ private:
     float xIncrement,yIncrement;
     float steps;
     float stepGap;
+    
+    void draw(EiRas* device);
 };
 #endif /* EiLine_hpp */

@@ -9,6 +9,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "EiRas/EiRasHeaders.h"
+#include "EiRas/Others/RingBuffer.hpp"
 #define Zfar 100.0
 
 #define Znear 1
@@ -20,32 +21,68 @@
 //vec4* source;
 //vec4 getSrc(int x,int y);
 
+void callback(void* data)
+{
+    EiPrimitive* p = (EiPrimitive*)data;
+    delete p;
+}
+
 EiRas* device = nullptr;
 int main(int argc, const char * argv[])
 {
+
+    EiPrimitive* p1 = new EiPrimitive;
+    EiPrimitive* p2 = new EiPrimitive;
+    EiPrimitive* p3 = new EiPrimitive;
+    EiPrimitive* p4 = new EiPrimitive;
+    
+    
+    void* ret = nullptr;
+    RingBuffer* q = new RingBuffer(3);
+    
+    if(q->readBuffer(ret))
+    {
+        printf("get init data\n");
+    }
+    else
+    {
+        printf("no init data\n");
+    }
+    
+    bool finishWrite = q->writeBuffer(p1);
+    finishWrite = q->writeBuffer(p2);
+    finishWrite = q->writeBuffer(p3);
+    finishWrite = q->writeBuffer(p4);
+    
+    bool finishRead = q->readBuffer(ret);
+    
+    q->clear(callback);
+    
+    
+    system("pause");
     
     device = new EiRas;
     
-    device->initEi(vec2_Int(4096, 2160));
+    device->initEi(vec2_Int(1600, 1200));
     
     EiTriangel2D* triangel = new EiTriangel2D(vec2(0, 0), vec2(1, 1), vec2(-1, 1));
     triangel->colorA = ColorRed;
     triangel->colorB = ColorBlue;
     triangel->colorC = ColorGreen;
-    triangel->draw(device);
+//    triangel->draw(device);
     
     EiLine* lineH = new EiLine(vec2(-1, 0), vec2(1, 0));
     lineH->width = 0.01f;
-    lineH->draw(device);
+//    lineH->draw(device);
     
     EiLine* lineV = new EiLine(vec2(0, 1), vec2(0, -1));
     lineV->width = 0.01f;
-    lineV->draw(device);
+//    lineV->draw(device);
     
     EiLine* lineF2 = new EiLine(vec2(-0.5, 0.5), vec2(0.5, -0.5));
     lineF2->width = 0.001f;
 //    lineF2->color = ColorBlue;
-    lineF2->draw(device);
+//    lineF2->draw(device);
     
     const char* fileName = "OutPutFile.ppm";
     device->presentToFile(fileName);

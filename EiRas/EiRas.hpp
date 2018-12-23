@@ -11,11 +11,15 @@
 
 #include "EiMacro.h"
 #include "EiMath/EiMath.hpp"
+#include "EiRasObject.hpp"
+#include "EiPrimitive/EiPrimitive.hpp"
 
 extern vec2_Int frameSize;
 extern vec2 dxy;
 
-class EiRas
+class EiPrimitive;
+
+class EiRas : public EiRasObject
 {
 public:
     bool enabelMerge;
@@ -37,6 +41,11 @@ public:
     vec4 alphaMerge(vec4 _background, vec4 _foreground);
     
     bool sampleFrame(int x,int y,vec4 &Color);
+    
+    int hashCode()
+    {
+        return enabelMerge;
+    }
     
     static vec2_Int getFrameSize()
     {

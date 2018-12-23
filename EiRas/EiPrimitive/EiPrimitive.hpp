@@ -11,9 +11,13 @@
 
 #include "../EiMacro.h"
 #include "../EiRas.hpp"
+#include "../EiRasObject.hpp"
 
-class EiPrimitive
+class EiRas;
+
+class EiPrimitive : public EiRasObject
 {
+    friend class EiRas;
 public:
     
     EiPrimitive()
@@ -24,11 +28,7 @@ public:
     {
     };
     
-    virtual void draw(EiRas* device)
-    {
-    };
-    
-    inline void chageStartEnd(float &start,float &end)
+    inline void chageStartEnd(float& start,float& end)
     {
         float temp;
         if(start > end)
@@ -39,5 +39,9 @@ public:
         }
         
     }
+private:
+    virtual void draw(EiRas* device)
+    {
+    };
 };
 #endif /* EiPrimitive_hpp */

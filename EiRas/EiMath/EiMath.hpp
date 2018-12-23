@@ -11,6 +11,7 @@
 
 #include "../EiMacro.h"
 #include <math.h>
+#include "../EiRasObject.hpp"
 
 class vec2;
 class vec3;
@@ -82,7 +83,7 @@ namespace EiMath_Q {
     }
 }
 
-class vec2_Int
+class vec2_Int : public EiRasObject
 {
 public:
     int x;
@@ -94,7 +95,7 @@ public:
     }
 };
 
-class vec2
+class vec2 : public EiRasObject
 {
 public:
     
@@ -133,7 +134,7 @@ public:
     }
 };
 
-class vec3
+class vec3 : public EiRasObject
 {
 public:
     float x, y, z;
@@ -212,7 +213,7 @@ public:
     }
 };
 
-class vec4
+class vec4 : public EiRasObject
 {
 public:
     float r,g,b,a;
@@ -275,7 +276,7 @@ public:
     }
 };
 
-class matrix2X2
+class matrix2X2 : public EiRasObject
 {
 public:
     float m11,m12;
@@ -313,7 +314,7 @@ public:
     }
 };
 
-class matrix3X3
+class matrix3X3 : public EiRasObject
 {
     
 public:
@@ -368,7 +369,7 @@ public:
     }
 };
 
-class matrix4X4
+class matrix4X4 : public EiRasObject
 {
 public:
     

@@ -22,7 +22,6 @@ public:
     
     EiTriangel2D(vec2 _pA, vec2 _pB, vec2 _pC);
     void MatrixTransform(const matrix3X3& mat);
-    void draw(EiRas* device);
     
 private:
     vec2 pointLine[3];
@@ -43,6 +42,7 @@ private:
     }
     
     void ProcessPoint();
+    void draw(EiRas* device);
 };
 
 #endif /* EiTriangel_hpp */

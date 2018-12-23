@@ -20,5 +20,6 @@
 #include "EiPrimitive/EiPrimitive.hpp"
 #include "EiPrimitive/EiLine.hpp"
 #include "EiPrimitive/EiTriangel2D.hpp"
+#include "EiRasObject.hpp"
 
 #endif /* EiRasHeaders_h */

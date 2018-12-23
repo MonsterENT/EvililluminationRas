@@ -11,8 +11,9 @@
 
 #include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
+#include "../EiRasObject.hpp"
 
-class EiCamera
+class EiCamera : public EiRasObject
 {
     
 public:

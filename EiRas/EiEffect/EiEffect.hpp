@@ -12,8 +12,9 @@
 #include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
 #include "../EiRas.hpp"
+#include "../EiRasObject.hpp"
 
-class EiEffect
+class EiEffect : public EiRasObject
 {
 public:
     vec4* EiEffect_FullScreenBlur(int Radius, int blurtime, EiRas* device);

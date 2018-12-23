@@ -11,6 +11,7 @@
 
 #include "../EiMacro.h"
 #include "../EiMath/EiMath.hpp"
+#include "../EiRasObject.hpp"
 #include <string>
 #include <vector>
 
@@ -26,7 +27,7 @@ enum EiTexAddressingMode
 };
 
 
-class EiTexture2D
+class EiTexture2D : public EiRasObject
 {
     
 public:
@@ -58,9 +59,6 @@ private:
     vector<mipmap> mipmapLine;
     vec4 isSampleTex(float x, float y, int mipmapLevel = 0);
     void createMipmap();
-    
-
-    
 };
 
 
