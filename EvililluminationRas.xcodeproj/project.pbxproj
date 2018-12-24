@@ -17,6 +17,7 @@
 		2F0CD6A821C9EFD6001D4BF7 /* EiTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6A621C9EFD6001D4BF7 /* EiTexture2D.cpp */; };
 		2F0CD6AC21C9F07D001D4BF7 /* EiCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6AB21C9F07D001D4BF7 /* EiCamera.cpp */; };
 		2F0CD6AF21C9F7FE001D4BF7 /* EiTriangel2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6AD21C9F7FE001D4BF7 /* EiTriangel2D.cpp */; };
+		2F6F266C21D104E700D3A194 /* EiCommandBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F6F266A21D104E700D3A194 /* EiCommandBuffer.cpp */; };
 		C2197C7621CE878900274287 /* EiRasObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2197C7421CE878900274287 /* EiRasObject.cpp */; };
 		C2197C8121CFB0FF00274287 /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2197C7F21CFB0FF00274287 /* RingBuffer.cpp */; };
 		C235B5781F41F65300C44779 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C235B56C1F41F65300C44779 /* main.cpp */; };
@@ -58,6 +59,8 @@
 		2F0CD6AB21C9F07D001D4BF7 /* EiCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiCamera.cpp; sourceTree = "<group>"; };
 		2F0CD6AD21C9F7FE001D4BF7 /* EiTriangel2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiTriangel2D.cpp; sourceTree = "<group>"; };
 		2F0CD6AE21C9F7FE001D4BF7 /* EiTriangel2D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiTriangel2D.hpp; sourceTree = "<group>"; };
+		2F6F266A21D104E700D3A194 /* EiCommandBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiCommandBuffer.cpp; sourceTree = "<group>"; };
+		2F6F266B21D104E700D3A194 /* EiCommandBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiCommandBuffer.hpp; sourceTree = "<group>"; };
 		C2197C7421CE878900274287 /* EiRasObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiRasObject.cpp; sourceTree = "<group>"; };
 		C2197C7521CE878900274287 /* EiRasObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiRasObject.hpp; sourceTree = "<group>"; };
 		C2197C7F21CFB0FF00274287 /* RingBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
@@ -84,7 +87,8 @@
 		2F0CD68621C9EF23001D4BF7 /* EiRas */ = {
 			isa = PBXGroup;
 			children = (
-				C2197C7821CE8B5200274287 /* Others */,
+				2F6F266921D104CA00D3A194 /* EiCommandBuffer */,
+				C2197C7821CE8B5200274287 /* EiDependence */,
 				2F0CD6A921C9F06D001D4BF7 /* EiCamera */,
 				2F0CD6A521C9EFC6001D4BF7 /* EiTexture */,
 				2F0CD69E21C9EFAD001D4BF7 /* EiPrimitive */,
@@ -153,13 +157,22 @@
 			path = EiCamera;
 			sourceTree = "<group>";
 		};
-		C2197C7821CE8B5200274287 /* Others */ = {
+		2F6F266921D104CA00D3A194 /* EiCommandBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				2F6F266A21D104E700D3A194 /* EiCommandBuffer.cpp */,
+				2F6F266B21D104E700D3A194 /* EiCommandBuffer.hpp */,
+			);
+			path = EiCommandBuffer;
+			sourceTree = "<group>";
+		};
+		C2197C7821CE8B5200274287 /* EiDependence */ = {
 			isa = PBXGroup;
 			children = (
 				C2197C7F21CFB0FF00274287 /* RingBuffer.cpp */,
 				C2197C8021CFB0FF00274287 /* RingBuffer.hpp */,
 			);
-			path = Others;
+			path = EiDependence;
 			sourceTree = "<group>";
 		};
 		C235B5681F41F65300C44779 /* img */ = {
@@ -251,6 +264,7 @@
 			files = (
 				2F0CD69B21C9EFA7001D4BF7 /* EiTransform2D.cpp in Sources */,
 				2F0CD6A821C9EFD6001D4BF7 /* EiTexture2D.cpp in Sources */,
+				2F6F266C21D104E700D3A194 /* EiCommandBuffer.cpp in Sources */,
 				C2197C7621CE878900274287 /* EiRasObject.cpp in Sources */,
 				C2197C8121CFB0FF00274287 /* RingBuffer.cpp in Sources */,
 				2F0CD69C21C9EFA7001D4BF7 /* EiTransform3D.cpp in Sources */,

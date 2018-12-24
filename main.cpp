@@ -9,7 +9,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "EiRas/EiRasHeaders.h"
-#include "EiRas/Others/RingBuffer.hpp"
+#include "EiRas/EiDependence/RingBuffer.hpp"
 #define Zfar 100.0
 
 #define Znear 1

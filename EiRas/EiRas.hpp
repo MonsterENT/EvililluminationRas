@@ -22,7 +22,7 @@ class EiPrimitive;
 class EiRas : public EiRasObject
 {
 public:
-    bool enabelMerge;
+    bool enableMerge;
     
     void initEi(vec2_Int frameSize);
     
@@ -44,7 +44,7 @@ public:
     
     int hashCode()
     {
-        return enabelMerge;
+        return enableMerge;
     }
     
     static vec2_Int getFrameSize()

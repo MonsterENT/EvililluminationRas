@@ -29,7 +29,7 @@ vec2 dxy;
 
 void EiRas::initEi(vec2_Int _frameSize)
 {
-    enabelMerge = true;
+    enableMerge = true;
     
     frameSize = _frameSize;
     dxy = vec2(1.f / (float)frameSize.x, 1.f / (float)frameSize.y);
@@ -53,7 +53,7 @@ void EiRas::setPixel(int x,int y,vec4 color)
 {
     if(coordinate2frame(x, y))
     {
-        if(enabelMerge)
+        if(enableMerge)
         {
             frame[y * getFrameSize().x + x] = alphaMerge(frame[y * getFrameSize().x + x], color);
         }
@@ -101,7 +101,7 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             
             depthBuffer[y * NDC2FrameWidth + x] = z;
             
-            if(enabelMerge)
+            if(enableMerge)
             {
                 frame[y * NDC2FrameWidth + x] = alphaMerge(frame[y * NDC2FrameWidth + x], color);
             }

@@ -29,7 +29,7 @@ public:
         int ret = p1.hashCode();
         ret = 31 * ret + p2.hashCode();
         ret = 31 * ret + width;
-        ret = 31 * color.hashCode();
+        ret = 31 * ret + color.hashCode();
         return ret;
     }
     
