@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "EiRas/EiRasHeaders.h"
 #include "EiRas/EiDependence/RingBuffer.hpp"
+#include "EiRas/EiDependence/EiThread/EiThreadHelper.hpp"
 #define Zfar 100.0
 
 #define Znear 1
@@ -27,10 +28,20 @@ void callback(void* data)
     delete p;
 }
 
+void threadFunc(void* data)
+{
+    
+}
+
 EiRas* device = nullptr;
 int main(int argc, const char * argv[])
 {
 
+    EiThread* thread = EiThreadHelper::createEiThread();
+    thread->destoryWhenFinished(&thread);
+    thread->run(threadFunc, nullptr);
+    
+    
     EiPrimitive* p1 = new EiPrimitive;
     EiPrimitive* p2 = new EiPrimitive;
     EiPrimitive* p3 = new EiPrimitive;
@@ -59,7 +70,7 @@ int main(int argc, const char * argv[])
     q->clear(callback);
     
     
-    system("pause");
+//    system("pause");
     
     device = new EiRas;
     
@@ -85,7 +96,7 @@ int main(int argc, const char * argv[])
 //    lineF2->draw(device);
     
     const char* fileName = "OutPutFile.ppm";
-    device->presentToFile(fileName);
+//    device->presentToFile(fileName);
 //    EiTriangel* t = new EiTriangel(vec2(0,0),vec2(0,0),vec2(0,0));
     // 初始化 EiRas
 //    initEi();
