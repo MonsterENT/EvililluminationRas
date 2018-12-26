@@ -28,6 +28,12 @@ public:
     {
     };
     
+    virtual EiPrimitive* copy()
+    {
+        EiPrimitive* ret = new EiPrimitive;
+        return ret;
+    }
+    
     inline void chageStartEnd(float& start,float& end)
     {
         float temp;

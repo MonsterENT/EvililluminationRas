@@ -17,6 +17,8 @@
 		2F0CD6A821C9EFD6001D4BF7 /* EiTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6A621C9EFD6001D4BF7 /* EiTexture2D.cpp */; };
 		2F0CD6AC21C9F07D001D4BF7 /* EiCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6AB21C9F07D001D4BF7 /* EiCamera.cpp */; };
 		2F0CD6AF21C9F7FE001D4BF7 /* EiTriangel2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0CD6AD21C9F7FE001D4BF7 /* EiTriangel2D.cpp */; };
+		2F3DFC8821D365FE00CCFF41 /* EiTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F3DFC8621D365FE00CCFF41 /* EiTime.cpp */; };
+		2F3DFC8C21D3686E00CCFF41 /* EiTime_MacOS_Adapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F3DFC8A21D3686E00CCFF41 /* EiTime_MacOS_Adapter.mm */; };
 		2F6F266C21D104E700D3A194 /* EiCommandBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F6F266A21D104E700D3A194 /* EiCommandBuffer.cpp */; };
 		2F8848DE21D2132700EA5B1F /* EiThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8848DC21D2132700EA5B1F /* EiThread.cpp */; };
 		2F8848E121D214DD00EA5B1F /* EiThread_MacOS_Bridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F8848E021D214DD00EA5B1F /* EiThread_MacOS_Bridge.mm */; };
@@ -64,6 +66,10 @@
 		2F0CD6AB21C9F07D001D4BF7 /* EiCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EiCamera.cpp; sourceTree = "<group>"; };
 		2F0CD6AD21C9F7FE001D4BF7 /* EiTriangel2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiTriangel2D.cpp; sourceTree = "<group>"; };
 		2F0CD6AE21C9F7FE001D4BF7 /* EiTriangel2D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiTriangel2D.hpp; sourceTree = "<group>"; };
+		2F3DFC8621D365FE00CCFF41 /* EiTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiTime.cpp; sourceTree = "<group>"; };
+		2F3DFC8721D365FE00CCFF41 /* EiTime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiTime.hpp; sourceTree = "<group>"; };
+		2F3DFC8A21D3686E00CCFF41 /* EiTime_MacOS_Adapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = EiTime_MacOS_Adapter.mm; sourceTree = "<group>"; };
+		2F3DFC8B21D3686E00CCFF41 /* EiTime_MacOS_Adapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiTime_MacOS_Adapter.hpp; sourceTree = "<group>"; };
 		2F6F266A21D104E700D3A194 /* EiCommandBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiCommandBuffer.cpp; sourceTree = "<group>"; };
 		2F6F266B21D104E700D3A194 /* EiCommandBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EiCommandBuffer.hpp; sourceTree = "<group>"; };
 		2F8848DC21D2132700EA5B1F /* EiThread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EiThread.cpp; sourceTree = "<group>"; };
@@ -172,6 +178,25 @@
 			path = EiCamera;
 			sourceTree = "<group>";
 		};
+		2F3DFC8521D3657E00CCFF41 /* EiTime */ = {
+			isa = PBXGroup;
+			children = (
+				2F3DFC8921D3683800CCFF41 /* MacOS_Build */,
+				2F3DFC8621D365FE00CCFF41 /* EiTime.cpp */,
+				2F3DFC8721D365FE00CCFF41 /* EiTime.hpp */,
+			);
+			path = EiTime;
+			sourceTree = "<group>";
+		};
+		2F3DFC8921D3683800CCFF41 /* MacOS_Build */ = {
+			isa = PBXGroup;
+			children = (
+				2F3DFC8A21D3686E00CCFF41 /* EiTime_MacOS_Adapter.mm */,
+				2F3DFC8B21D3686E00CCFF41 /* EiTime_MacOS_Adapter.hpp */,
+			);
+			path = MacOS_Build;
+			sourceTree = "<group>";
+		};
 		2F6F266921D104CA00D3A194 /* EiCommandBuffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +234,7 @@
 		C2197C7821CE8B5200274287 /* EiDependence */ = {
 			isa = PBXGroup;
 			children = (
+				2F3DFC8521D3657E00CCFF41 /* EiTime */,
 				2F8848DB21D2116D00EA5B1F /* EiThread */,
 				C2197C7F21CFB0FF00274287 /* RingBuffer.cpp */,
 				C2197C8021CFB0FF00274287 /* RingBuffer.hpp */,
@@ -305,6 +331,7 @@
 			files = (
 				2F0CD69B21C9EFA7001D4BF7 /* EiTransform2D.cpp in Sources */,
 				2F0CD6A821C9EFD6001D4BF7 /* EiTexture2D.cpp in Sources */,
+				2F3DFC8821D365FE00CCFF41 /* EiTime.cpp in Sources */,
 				2F6F266C21D104E700D3A194 /* EiCommandBuffer.cpp in Sources */,
 				2F8848DE21D2132700EA5B1F /* EiThread.cpp in Sources */,
 				2F8848EA21D226CC00EA5B1F /* EiThread_MacOS_Build.mm in Sources */,
@@ -314,6 +341,7 @@
 				2F0CD6AC21C9F07D001D4BF7 /* EiCamera.cpp in Sources */,
 				2F8848EE21D22A7B00EA5B1F /* EiThreadHelper.cpp in Sources */,
 				2F8848E121D214DD00EA5B1F /* EiThread_MacOS_Bridge.mm in Sources */,
+				2F3DFC8C21D3686E00CCFF41 /* EiTime_MacOS_Adapter.mm in Sources */,
 				2F0CD6A421C9EFBD001D4BF7 /* EiLine.cpp in Sources */,
 				2F0CD6A321C9EFBD001D4BF7 /* EiPrimitive.cpp in Sources */,
 				2F0CD69D21C9EFA7001D4BF7 /* EiMath.cpp in Sources */,

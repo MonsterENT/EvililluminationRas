@@ -16,6 +16,12 @@ public:
     {
         return -1;
     }
+    
+    virtual EiRasObject* copy()
+    {
+        EiRasObject* ret = new EiRasObject;
+        return ret;
+    }
 };
 
 #endif /* EiRasObject_hpp */
