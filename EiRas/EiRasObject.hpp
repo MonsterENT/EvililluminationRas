@@ -9,6 +9,9 @@
 #ifndef EiRasObject_hpp
 #define EiRasObject_hpp
 
+typedef unsinged int ClassIdentifier;
+#define CI_EiRasObject 100
+
 class EiRasObject {
     
 public:
@@ -22,6 +25,11 @@ public:
         EiRasObject* ret = new EiRasObject;
         return ret;
     }
+
+	virtual ClassIdentifier cls()
+	{
+		return CI_EiRasObject;
+	}
 };
 
 #endif /* EiRasObject_hpp */

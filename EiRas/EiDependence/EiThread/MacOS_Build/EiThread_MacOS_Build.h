@@ -7,7 +7,7 @@
 //
 
 #include "../../../EiMacro.h"
-#if (defined Ei_MacOS_Build) || (defined Ei_MacOS_Build)
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 #import <Foundation/Foundation.h>
 

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Monster. All rights reserved.
 //
 #include "../../../EiMacro.h"
-#if (defined Ei_MacOS_Build) || (defined Ei_MacOS_Build)
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 #ifndef EiThread_MacOS
 #define EiThread_MacOS

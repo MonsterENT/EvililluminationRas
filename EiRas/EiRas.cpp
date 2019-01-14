@@ -47,7 +47,6 @@ void EiRas::initEi(vec2_Int _frameSize)
     NDC2FrameHeight = frameSize.y * MSAASqrt;
     
     commandBuffer = new EiCommandBuffer(50, this);
-//    commandBuffer->presentProcessFunc
 }
 
 

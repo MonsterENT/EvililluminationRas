@@ -8,7 +8,7 @@
 
 #include "EiThread_MacOS_Bridge.hpp"
 
-#if (defined Ei_MacOS_Build) || (defined Ei_MacOS_Build)
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 #import "EiThread_MacOS_Build.h"
 

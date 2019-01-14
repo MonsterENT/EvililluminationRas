@@ -8,7 +8,7 @@
 
 #import "EiThread_MacOS_Build.h"
 
-#if (defined Ei_MacOS_Build) || (defined Ei_MacOS_Build)
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 @implementation EiThread_MacOS_Build
 

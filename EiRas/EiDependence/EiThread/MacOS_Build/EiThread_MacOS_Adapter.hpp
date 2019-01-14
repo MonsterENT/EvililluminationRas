@@ -7,7 +7,7 @@
 //
 
 #include "../../../EiMacro.h"
-#if (defined Ei_MacOS_Build) || (defined Ei_MacOS_Build)
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 #ifndef EiThread_MacOS_Adapter_hpp
 #define EiThread_MacOS_Adapter_hpp
