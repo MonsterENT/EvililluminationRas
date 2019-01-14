@@ -13,16 +13,20 @@
 #include "EiMath/EiMath.hpp"
 #include "EiRasObject.hpp"
 #include "EiPrimitive/EiPrimitive.hpp"
+#include "EiCommandBuffer/EiCommandBuffer.hpp"
 
 extern vec2_Int frameSize;
 extern vec2 dxy;
 
 class EiPrimitive;
+class EiCommandBuffer;
+class EiCommand;
 
 class EiRas : public EiRasObject
 {
+    friend EiCommandBuffer;
 public:
-    bool enabelMerge;
+    bool enableMerge;
     
     void initEi(vec2_Int frameSize);
     
@@ -44,7 +48,7 @@ public:
     
     int hashCode()
     {
-        return enabelMerge;
+        return enableMerge;
     }
     
     static vec2_Int getFrameSize()
@@ -57,9 +61,15 @@ public:
         return dxy;
     }
     
-private:
-    vec4* frame =  nullptr;
+    void clearFrameAndDepth(vec4 clearColor);
+    void drawPrimitives(EiPrimitive** primitives, int count);
+    void drawPrimitive(EiPrimitive* primitive);
+    void present();
     
+private:
+    EiCommandBuffer* commandBuffer;
+    
+    vec4* frame =  nullptr;
     float* depthBuffer = nullptr;
     
     matrix4X4 mat4X4Proj;
@@ -67,6 +77,10 @@ private:
     
     int NDC2FrameWidth,NDC2FrameHeight;
     int MSAASqrt;
+    
+    void _clearFrameAndDepth(vec4& clearColor);
+    void _drawPrimitives(EiPrimitive** primitives, int count);
+    void _present(EiCommand** commands, int count);
 };
 
 #endif /* EiRas_hpp */

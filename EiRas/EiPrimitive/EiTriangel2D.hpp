@@ -23,6 +23,14 @@ public:
     EiTriangel2D(vec2 _pA, vec2 _pB, vec2 _pC);
     void MatrixTransform(const matrix3X3& mat);
     
+    virtual EiTriangel2D* copy()
+    {
+        EiTriangel2D* ret = new EiTriangel2D(pA, pB, pC);
+        ret->colorA = colorA;
+        ret->colorB = colorB;
+        ret->colorC = colorC;
+        return ret;
+    }
 private:
     vec2 pointLine[3];
     vec2 pM;

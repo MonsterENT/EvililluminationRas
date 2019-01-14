@@ -29,7 +29,7 @@ vec2 dxy;
 
 void EiRas::initEi(vec2_Int _frameSize)
 {
-    enabelMerge = true;
+    enableMerge = true;
     
     frameSize = _frameSize;
     dxy = vec2(1.f / (float)frameSize.x, 1.f / (float)frameSize.y);
@@ -45,6 +45,9 @@ void EiRas::initEi(vec2_Int _frameSize)
     MSAASqrt = sqrt(MSAA4X);
     NDC2FrameWidth = frameSize.x * MSAASqrt;
     NDC2FrameHeight = frameSize.y * MSAASqrt;
+    
+    commandBuffer = new EiCommandBuffer(50, this);
+//    commandBuffer->presentProcessFunc
 }
 
 
@@ -53,7 +56,7 @@ void EiRas::setPixel(int x,int y,vec4 color)
 {
     if(coordinate2frame(x, y))
     {
-        if(enabelMerge)
+        if(enableMerge)
         {
             frame[y * getFrameSize().x + x] = alphaMerge(frame[y * getFrameSize().x + x], color);
         }
@@ -101,7 +104,7 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             
             depthBuffer[y * NDC2FrameWidth + x] = z;
             
-            if(enabelMerge)
+            if(enableMerge)
             {
                 frame[y * NDC2FrameWidth + x] = alphaMerge(frame[y * NDC2FrameWidth + x], color);
             }
@@ -217,4 +220,88 @@ vec4* EiRas::getFrameBuffer()
 float* EiRas::getDepthBuffer()
 {
     return depthBuffer;
+}
+
+void EiRas::clearFrameAndDepth(vec4 clearColor)
+{
+    EiCommand* command = new EiCommand;
+//    //pipe line state
+//    vec4 clearColor;
+//    bool isClearFrame = false;
+//    bool isPresent = false;
+//
+//    bool enableMerge;
+//    EiPrimitive** primitives;
+//    unsigned int primitiveCount;
+//    bool* destoryFlag;
+    command->clearColor = clearColor;
+    command->isClearFrame = true;
+    commandBuffer->addCommand(command);
+}
+
+void EiRas::drawPrimitives(EiPrimitive** primitives, int count)
+{
+    EiCommand* command = new EiCommand;
+    
+    EiPrimitive** copy_array = new EiPrimitive*[count];
+    for(int i = 0; i < count; i++)
+    {
+        copy_array[i] = primitives[i]->copy();
+    }
+    
+    command->primitives = copy_array;
+    command->primitiveCount = count;
+    command->enableMerge = enableMerge;
+    command->destoryPrimitiveArray = true;
+    commandBuffer->addCommand(command);
+}
+
+void EiRas::drawPrimitive(EiPrimitive* primitive)
+{
+    EiPrimitive** array = new EiPrimitive*[1];
+    array[0] = primitive->copy();
+    EiCommand* command = new EiCommand;
+    command->primitives = array;
+    command->primitiveCount = 1;
+    command->enableMerge = enableMerge;
+    command->destoryPrimitiveArray = true;
+    commandBuffer->addCommand(command);
+}
+
+void EiRas::present()
+{
+    EiCommand* command = new EiCommand;
+    command->isPresent = true;
+    commandBuffer->addCommand(command);
+}
+
+void EiRas::_clearFrameAndDepth(vec4& clearColor)
+{
+    for(int i = 0; i < frameSize.x * frameSize.y * MSAA4X; i++)
+    {
+        frame[i] = clearColor;
+        depthBuffer[i] = MAXFLOAT;
+    }
+}
+
+void EiRas::_drawPrimitives(EiPrimitive** primitives, int count)
+{
+    for(int i = 0; i < count; i++)
+    {
+        EiPrimitive* primitive = primitives[i];
+        primitive->draw(this);
+    }
+}
+
+void EiRas::_present(EiCommand** commands, int count)
+{
+    for(int i = 0; i < count; i++)
+    {
+        EiCommand* command = commands[i];
+        _drawPrimitives(command->primitives, command->primitiveCount);
+        delete command;
+    }
+#warning 记得移除
+#warning enableMerge TODO
+    presentToFile("OutPutFileNew.ppm");
 }

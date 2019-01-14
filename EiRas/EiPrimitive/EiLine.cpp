@@ -11,9 +11,7 @@
 
 EiLine::EiLine(float x1,float y1,float x2,float y2)
 {
-    p1 = vec2(x1, y1);
-    p2 = vec2(x2, y2);
-    EiLine(p1, p2);
+    EiLine(vec2(x1, y1), vec2(x2, y2));
 }
 
 EiLine::EiLine(vec2 _p1, vec2 _p2)

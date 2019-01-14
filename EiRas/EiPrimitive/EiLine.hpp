@@ -24,12 +24,20 @@ public:
         
     }
     
+    virtual EiLine* copy()
+    {
+        EiLine* ret = new EiLine(p1, p2);
+        ret->width = width;
+        ret->color = color;
+        return ret;
+    }
+    
     int hashCode()
     {
         int ret = p1.hashCode();
         ret = 31 * ret + p2.hashCode();
         ret = 31 * ret + width;
-        ret = 31 * color.hashCode();
+        ret = 31 * ret + color.hashCode();
         return ret;
     }
     
