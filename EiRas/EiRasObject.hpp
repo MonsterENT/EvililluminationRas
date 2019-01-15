@@ -9,7 +9,7 @@
 #ifndef EiRasObject_hpp
 #define EiRasObject_hpp
 
-typedef unsinged int ClassIdentifier;
+typedef unsigned int ClassIdentifier;
 #define CI_EiRasObject 100
 
 class EiRasObject {
