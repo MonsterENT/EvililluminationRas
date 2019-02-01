@@ -52,11 +52,15 @@ namespace EiMath_Q {
         swap<T>(array[mid], array[right]);
         
         int count = left;
-        for(int i = left; i <= right; i++)
+        for(int i = left; i < right; i++)
         {
-            if(compareFunc(&array[i],&array[right]) && i != count)
+            if(compareFunc(&array[i],&array[right]))
             {
-                swap<T>(array[i], array[count++]);
+                if(i != count)
+                {
+                    swap<T>(array[i], array[count]);
+                }
+                count++;
             }
         }
         swap<T>(array[right], array[count]);
