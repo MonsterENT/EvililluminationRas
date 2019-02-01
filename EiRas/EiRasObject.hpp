@@ -15,6 +15,9 @@ typedef unsigned int ClassIdentifier;
 class EiRasObject {
     
 public:
+    
+    bool staticObj = false;
+    
     virtual int hashCode()
     {
         return -1;
@@ -22,8 +25,15 @@ public:
     
     virtual EiRasObject* copy()
     {
-        EiRasObject* ret = new EiRasObject;
-        return ret;
+        if(staticObj)
+        {
+            return this;
+        }
+        else
+        {
+            EiRasObject* ret = new EiRasObject;
+            return ret;
+        }
     }
 
 	virtual ClassIdentifier cls()

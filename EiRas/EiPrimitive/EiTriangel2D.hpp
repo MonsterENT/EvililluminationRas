@@ -25,11 +25,18 @@ public:
     
     virtual EiTriangel2D* copy()
     {
-        EiTriangel2D* ret = new EiTriangel2D(pA, pB, pC);
-        ret->colorA = colorA;
-        ret->colorB = colorB;
-        ret->colorC = colorC;
-        return ret;
+        if(staticObj)
+        {
+            return this;
+        }
+        else
+        {
+            EiTriangel2D* ret = new EiTriangel2D(pA, pB, pC);
+            ret->colorA = colorA;
+            ret->colorB = colorB;
+            ret->colorC = colorC;
+            return ret;
+        }
     }
 private:
     vec2 pointLine[3];

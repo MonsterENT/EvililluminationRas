@@ -30,8 +30,15 @@ public:
     
     virtual EiPrimitive* copy()
     {
-        EiPrimitive* ret = new EiPrimitive;
-        return ret;
+        if(staticObj)
+        {
+            return this;
+        }
+        else
+        {
+            EiPrimitive* ret = new EiPrimitive;
+            return ret;
+        }
     }
     
     inline void chageStartEnd(float& start,float& end)
