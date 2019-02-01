@@ -29,15 +29,10 @@ public:
     bool enableMerge;
     
     void initEi(vec2_Int frameSize);
-    
-    void setPixel(int x, int y, vec4 color);
-    void setPixel(vec2 p, vec4 color);
+
     void setPixelWithDepthTest(vec2 p, float z, vec4 color);
     
     void presentToFile(const char* fileName);
-    
-    bool coordinate2frame(int &x, int &y);
-    bool coordinate2frame(float &x, float &y);
     
     vec4* getFrameBuffer();
     float* getDepthBuffer();
@@ -76,11 +71,15 @@ private:
     matrix4X4 *mat4X4Camera;
     
     int NDC2FrameWidth,NDC2FrameHeight;
-    int MSAASqrt;
     
     void _clearFrameAndDepth(vec4& clearColor);
     void _drawPrimitives(EiPrimitive** primitives, int count);
     void _present(EiCommand** commands, int count);
+    
+    void setPixel(int x, int y, vec4 color);
+    void setPixel(vec2 p, vec4 color);
+    bool coordinate2frame(int &x, int &y);
+    bool coordinate2frame(float &x, float &y);
 };
 
 #endif /* EiRas_hpp */

@@ -29,11 +29,6 @@
 #define ColorBlue vec4(0, 0, 1, 1);
 #define ColorGray(x) vec4(x, x, x, 1)
 
-#define MSAA4X (4)
-
-#define WidthGapMSAA4X (1.0f / (float)(NDC2FrameWidth))
-#define HeightGapMSAA4X (1.0f / (float)(NDC2FrameHeight))
-
 #ifndef MAXFLOAT
 #define MAXFLOAT 0x1.fffffep+127f
 #endif

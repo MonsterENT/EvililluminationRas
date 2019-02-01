@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
 {
     device = new EiRas;
     
-    device->initEi(vec2_Int(1600, 1200));
+    device->initEi(vec2_Int(800, 600));
     
     device->clearFrameAndDepth(ColorGray(0));
     EiTriangel2D* triangel = new EiTriangel2D(vec2(0, 0), vec2(1, 1), vec2(-1, 1));
@@ -47,9 +47,9 @@ int main(int argc, const char * argv[])
     lineF2->color = ColorBlue;
     
     
-//    device->drawPrimitive(lineH);
-//    device->drawPrimitive(lineV);
-//    device->drawPrimitive(lineF2);
+    device->drawPrimitive(lineH);
+    device->drawPrimitive(lineV);
+    device->drawPrimitive(lineF2);
     
     device->present();
     

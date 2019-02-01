@@ -13,16 +13,16 @@ const vec2 MSAAPosMatrix[]= {
     vec2(-1 , -1), vec2(1 , -1),
     vec2(-1 , +1), vec2(+1 , +1)
 };
-
-const vec2 MSAA16XSampleMatrix[]= {
-    vec2(-1 , -1), vec2(1, -1),
-    vec2(-1 , +1), vec2(+1 , +1)
-};
-
-const vec2 MSAA4XSampleMatrix[]= {
-    vec2(0 , 0), vec2(1 , 0),
-    vec2(0 , +1), vec2(+1 , +1)
-};
+//
+//const vec2 MSAA16XSampleMatrix[]= {
+//    vec2(-1 , -1), vec2(1, -1),
+//    vec2(-1 , +1), vec2(+1 , +1)
+//};
+//
+//const vec2 MSAA4XSampleMatrix[]= {
+//    vec2(0 , 0), vec2(1 , 0),
+//    vec2(0 , +1), vec2(+1 , +1)
+//};
 
 vec2_Int frameSize;
 vec2 dxy;
@@ -34,17 +34,16 @@ void EiRas::initEi(vec2_Int _frameSize)
     frameSize = _frameSize;
     dxy = vec2(1.f / (float)frameSize.x, 1.f / (float)frameSize.y);
     
-    frame = new vec4[frameSize.x * frameSize.y * MSAA4X];
-    depthBuffer = new float[frameSize.x * MSAA4X * frameSize.y];
+    frame = new vec4[frameSize.x * frameSize.y];
+    depthBuffer = new float[frameSize.x * frameSize.y];
     
-    for(int i = 0; i < frameSize.x * frameSize.y * MSAA4X; i++)
+    for(int i = 0; i < frameSize.x * frameSize.y; i++)
     {
         depthBuffer[i] = MAXFLOAT;
     }
     
-    MSAASqrt = sqrt(MSAA4X);
-    NDC2FrameWidth = frameSize.x * MSAASqrt;
-    NDC2FrameHeight = frameSize.y * MSAASqrt;
+    NDC2FrameWidth = frameSize.x;
+    NDC2FrameHeight = frameSize.y;
     
     commandBuffer = new EiCommandBuffer(50, this);
 }
@@ -76,20 +75,16 @@ void EiRas::setPixel(vec2 p,vec4 color)
 
 void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
 {
-    vec2* subPixel = new vec2[MSAA4X];
+    static vec2* subPixel = new vec2[4];
     
-    int Level = MSAA4X / 4;
-
-    for(int i = 0; i < Level; i++)
+    
+    for(int index = 0; index < 4; index++)
     {
-        for(int index = 0; index < 4; index++)
-        {
-            subPixel[index + i * 4].x = p.x + MSAAPosMatrix[index].x * (i + 1) * (float)WidthGapMSAA4X / 2.0;
-            subPixel[index + i * 4].y = p.y + MSAAPosMatrix[index].y * (i + 1) * (float)HeightGapMSAA4X / 2.0;
-        }
+        subPixel[index].x = p.x + MSAAPosMatrix[index].x * dxy.x;
+        subPixel[index].y = p.y + MSAAPosMatrix[index].y * dxy.y;
     }
     
-    for(int i = 0; i < MSAA4X; i++)
+    for(int i = 0; i < 4; i++)
     {
         if(coordinate2frame(subPixel[i].x, subPixel[i].y))
         {
@@ -105,11 +100,11 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             
             if(enableMerge)
             {
-                frame[y * NDC2FrameWidth + x] = alphaMerge(frame[y * NDC2FrameWidth + x], color);
+                frame[y * NDC2FrameWidth + x] = alphaMerge(frame[y * NDC2FrameWidth + x], color / 4.0);
             }
             else
             {
-                frame[y * NDC2FrameWidth + x] = color;
+                frame[y * NDC2FrameWidth + x] = color / 4.0;
             }
         }
     }
@@ -127,33 +122,15 @@ void EiRas::presentToFile(const char* fileName)
         {
             vec4 MixedColor = vec4(0, 0, 0, 0);
             
-            int Level = MSAA4X / 4;
-            
             int sampledCount = 0;
-            
-            for(int i = 0;i < Level; i++)
+            for(int index = 0; index < 4; index++)
             {
-                for(int index = 0; index < 4; index++)
+                const vec2* SampleMatrix = MSAAPosMatrix;
+                
+                if(sampleFrame(x  + (int)(SampleMatrix[index].x) * dxy.x, y + (int)(SampleMatrix[index].y) * dxy.y , MixedColor))
                 {
-                    const vec2* SampleMatrix;
-                    if(Level == 1)
-                    {
-                        SampleMatrix = MSAA4XSampleMatrix;
-                    }
-                    else
-                    {
-                        SampleMatrix = MSAA16XSampleMatrix;
-                    }
-                    
-                    if(sampleFrame(x * MSAASqrt + (int)(SampleMatrix[index].x) * (i + 1), y * MSAASqrt + (int)(SampleMatrix[index].y) * (i + 1), MixedColor))
-                    {
-                        sampledCount ++;
-                    }
+                    sampledCount ++;
                 }
-            }
-            if(sampledCount != 0)
-            {
-                MixedColor /= (float)sampledCount;
             }
             
             fprintf(f,"%d %d %d ", EiMath_Q::toInt(MixedColor.r), EiMath_Q::toInt(MixedColor.g), EiMath_Q::toInt(MixedColor.b));
@@ -224,15 +201,15 @@ float* EiRas::getDepthBuffer()
 void EiRas::clearFrameAndDepth(vec4 clearColor)
 {
     EiCommand* command = new EiCommand;
-//    //pipe line state
-//    vec4 clearColor;
-//    bool isClearFrame = false;
-//    bool isPresent = false;
-//
-//    bool enableMerge;
-//    EiPrimitive** primitives;
-//    unsigned int primitiveCount;
-//    bool* destoryFlag;
+    //    //pipe line state
+    //    vec4 clearColor;
+    //    bool isClearFrame = false;
+    //    bool isPresent = false;
+    //
+    //    bool enableMerge;
+    //    EiPrimitive** primitives;
+    //    unsigned int primitiveCount;
+    //    bool* destoryFlag;
     command->clearColor = clearColor;
     command->isClearFrame = true;
     commandBuffer->addCommand(command);
@@ -276,7 +253,7 @@ void EiRas::present()
 
 void EiRas::_clearFrameAndDepth(vec4& clearColor)
 {
-    for(int i = 0; i < frameSize.x * frameSize.y * MSAA4X; i++)
+    for(int i = 0; i < frameSize.x * frameSize.y; i++)
     {
         frame[i] = clearColor;
         depthBuffer[i] = MAXFLOAT;
@@ -305,5 +282,5 @@ void EiRas::_present(EiCommand** commands, int count)
 #warning 记得移除
 #warning enableMerge TODO
 #endif
-    presentToFile("OutPutFileNew.ppm");
+    presentToFile("OutPutFileMSAA.ppm");
 }

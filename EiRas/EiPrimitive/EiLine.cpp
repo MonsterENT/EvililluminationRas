@@ -52,7 +52,7 @@ void EiLine::draw(EiRas* device)
     
     for(float i = 0; i < steps; i += stepGap)
     {
-        device->setPixel(pos.x, pos.y, color);
+        device->setPixelWithDepthTest(pos, 0, color);
         if(width > 0)
         {
             if(k > 1)

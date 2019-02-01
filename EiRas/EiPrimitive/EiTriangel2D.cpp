@@ -66,7 +66,7 @@ void EiTriangel2D::draw(EiRas* device)
             this->chageStartEnd(start, end);
             for(float x = start; x < end; x += EiRas::getFrameDxy().x)
             {
-                device->setPixel(vec2(x,y), lerpColor(vec2(x,y)));
+                device->setPixelWithDepthTest(vec2(x,y), 0, lerpColor(vec2(x,y)));
             }
         }
     }
