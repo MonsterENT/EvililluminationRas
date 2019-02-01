@@ -43,7 +43,7 @@ bool RingBuffer::isFull()
 void RingBuffer::clear(RingBufferCallBack callBack)
 {
     while (1) {
-        void* retData = nullptr;
+        void* retData = 0;
         if(readBuffer(retData))
         {
             if(callBack)

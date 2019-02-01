@@ -300,7 +300,10 @@ void EiRas::_present(EiCommand** commands, int count)
         _drawPrimitives(command->primitives, command->primitiveCount);
         delete command;
     }
+    
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 #warning 记得移除
 #warning enableMerge TODO
+#endif
     presentToFile("OutPutFileNew.ppm");
 }

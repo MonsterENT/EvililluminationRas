@@ -22,7 +22,7 @@ public:
     
     //this callBack func will be invoked for every data was stored in ringBuffer
     //at callBack you can free the memory of the data
-    void clear(RingBufferCallBack callBack = nullptr);
+    void clear(RingBufferCallBack callBack = 0);
     
     bool readBuffer(void* &retDataPtr);
     bool writeBuffer(void* dataPtr);
