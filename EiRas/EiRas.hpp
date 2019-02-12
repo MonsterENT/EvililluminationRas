@@ -26,7 +26,7 @@ class EiRas : public EiRasObject
 {
     friend EiCommandBuffer;
 public:
-    void* target;
+    void* presenterTarget;
     
     bool enableMerge;
     

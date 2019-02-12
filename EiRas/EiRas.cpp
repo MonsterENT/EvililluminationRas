@@ -281,7 +281,7 @@ void EiRas::_present(EiCommand** commands, int count)
     
     resolveAAFrame();
 #ifdef Ei_iOS_Build
-    present2platform(this, target);
+    present2platform(this, presenterTarget);
 #endif
     
 #ifdef Ei_Windows_Build
