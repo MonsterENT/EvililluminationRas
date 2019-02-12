@@ -7,6 +7,7 @@
 //
 
 #include "EiCommandBuffer.hpp"
+#include <assert.h>
 
 void commandFunc(void* data);
 
@@ -52,6 +53,7 @@ EiCommandBuffer::EiCommandBuffer(unsigned int bufferSize, EiRas* _device)
     threadCtl->threadQuitCtl = false;
     
     thread = EiThreadHelper::createEiThread();
+    assert(thread != NULL);
     thread->destoryWhenFinished(&thread);
     thread->run(commandFunc, threadCtl);
 }

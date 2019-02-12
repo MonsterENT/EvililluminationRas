@@ -289,7 +289,7 @@ void EiRas::_present(EiCommand** commands, int count)
 #endif
     
 #ifdef Ei_MacOS_Build
-    presentToFile("OutPutFileMSAA.ppm");
+    present2platform(this, presenterTarget);
 #endif
 }
 
