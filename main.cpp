@@ -21,20 +21,26 @@ int main(int argc, const char * argv[])
     device->initEi(vec2_Int(800, 600));
     
     device->clearFrameAndDepth(ColorGray(0));
-    EiTriangel2D* triangel = new EiTriangel2D(vec2(0, 0), vec2(1, 1), vec2(-1, 1));
+    EiTriangel2D* triangel = new EiTriangel2D(vec2(-1, 1), vec2(1, 1), vec2(-1, -1));
     triangel->colorA = ColorRed;
-    triangel->colorB = ColorBlue;
-    triangel->colorC = ColorGreen;
+    triangel->colorB = ColorRed;
+    triangel->colorC = ColorRed;
     
     device->drawPrimitive(triangel);
     
-    matrix3X3 mat;
-    mat.m23 = 0.5;
-    triangel->MatrixTransform(mat);
-    triangel->colorB = ColorGray(1);
+//    matrix3X3 mat;
+//    mat.m23 = 0.5;
+//    triangel->MatrixTransform(mat);
+//    triangel->colorB = ColorGray(1);
+//
+//    device->drawPrimitive(triangel);
     
-    device->drawPrimitive(triangel);
+    EiTriangel2D* triangel2 = new EiTriangel2D(vec2(1, 1), vec2(-1, -1), vec2(1, -1));
+    triangel2->colorA = ColorGreen;
+    triangel2->colorB = ColorGreen;
+    triangel2->colorC = ColorGreen;
     
+    device->drawPrimitive(triangel2);
     
     EiLine* lineH = new EiLine(vec2(-1, 0), vec2(1, 0));
     lineH->width = 0.01f;
@@ -47,9 +53,9 @@ int main(int argc, const char * argv[])
     lineF2->color = ColorBlue;
     
     
-    device->drawPrimitive(lineH);
-    device->drawPrimitive(lineV);
-    device->drawPrimitive(lineF2);
+//    device->drawPrimitive(lineH);
+//    device->drawPrimitive(lineV);
+//    device->drawPrimitive(lineF2);
     
     device->present();
     

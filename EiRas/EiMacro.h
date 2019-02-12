@@ -13,10 +13,10 @@
 //#define Ei_RELEASE
 
 //platform define \ chose one of these platforms to build the project
-#define Ei_MacOS_Build
+//#define Ei_MacOS_Build
 //#define Ei_iOS_Build
 //#define Ei_Android_Build
-//#define Ei_Windows_Build
+#define Ei_Windows_Build
 
 #define  _PI (3.1415926)
 #define  _ESP0X1 (1e-1)

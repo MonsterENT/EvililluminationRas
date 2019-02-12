@@ -26,6 +26,8 @@ class EiRas : public EiRasObject
 {
     friend EiCommandBuffer;
 public:
+    void* target;
+    
     bool enableMerge;
     
     void initEi(vec2_Int frameSize);
@@ -39,7 +41,7 @@ public:
     
     vec4 alphaMerge(vec4 _background, vec4 _foreground);
     
-    bool sampleFrame(int x,int y,vec4 &Color);
+    bool sampleFrame(int x,int y, vec4 &Color, vec4* frame = NULL);
     
     int hashCode()
     {
@@ -64,7 +66,8 @@ public:
 private:
     EiCommandBuffer* commandBuffer;
     
-    vec4* frame =  nullptr;
+    vec4* frame_back =  nullptr;
+    vec4* frame_front =  nullptr;
     float* depthBuffer = nullptr;
     
     matrix4X4 mat4X4Proj;
@@ -75,6 +78,7 @@ private:
     void _clearFrameAndDepth(vec4& clearColor);
     void _drawPrimitives(EiPrimitive** primitives, int count);
     void _present(EiCommand** commands, int count);
+    void resolveAAFrame();
     
     void setPixel(int x, int y, vec4 color);
     void setPixel(vec2 p, vec4 color);
