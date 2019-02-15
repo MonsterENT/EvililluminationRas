@@ -43,7 +43,12 @@ EiCommand::~EiCommand()
 
 EiCommandBuffer::EiCommandBuffer(unsigned int bufferSize, EiRas* _device)
 {
-    buffer = new RingBuffer(bufferSize);
+    if(bufferSize > EiCommandBuffer_MAX_Command)
+    {
+        bufferSize = EiCommandBuffer_MAX_Command;
+    }
+    buffer = new RingBuffer(bufferSize, true);
+    outCmdPool = new EiCommand*[bufferSize];
     device = _device;
     time = new EiTime();
     lastTimestamp = time->getTimestamp();
@@ -58,30 +63,59 @@ EiCommandBuffer::EiCommandBuffer(unsigned int bufferSize, EiRas* _device)
     thread->run(commandFunc, threadCtl);
 }
 
+void bufferReleaseCallBack (void* ptr)
+{
+    EiCommand* cmd = (EiCommand*)ptr;
+    delete cmd;
+}
+
 EiCommandBuffer::~EiCommandBuffer()
 {
     threadCtl->threadQuitCtl = true;
+    buffer->clear_static(bufferReleaseCallBack);
     delete buffer;
 }
 
-void EiCommandBuffer::addCommand(EiCommand* command)
+
+EiCommand* EiCommandBuffer::addCommand()
 {
-    while (!buffer->writeBuffer(command));
+    void* tmpCmd = NULL;
+    bool shouldCreate = false;
+    while (!buffer->writeBuffer_static(tmpCmd, shouldCreate))
+    {
+        if(shouldCreate)
+        {
+            tmpCmd = new EiCommand;
+            while (!buffer->writeBuffer(tmpCmd));
+            break;
+        }
+    }
+    return (EiCommand*)tmpCmd;
 }
 
-EiCommand* EiCommandBuffer::getCommand()
+void EiCommandBuffer::addCommandFinish()
 {
-    void* retCommand = nullptr;
-    if(buffer->readBuffer(retCommand))
+    buffer->writeBuffer_finish();
+}
+
+EiCommand** EiCommandBuffer::getCommand()
+{
+    void** retCommand = nullptr;
+    if(buffer->readBuffer_static(retCommand))
     {
-        return (EiCommand*)retCommand;
+        return (EiCommand**)retCommand;
     }
     return nullptr;
 }
 
-EiCommand** EiCommandBuffer::getCommandPool()
+void EiCommandBuffer::getCommandFinish(int count)
 {
-    return commandOutPool;
+    buffer->readPosRedirect(count + 2);
+}
+
+EiCommand** EiCommandBuffer::getOutCmdPool()
+{
+    return outCmdPool;
 }
 
 double EiCommandBuffer::getDeltaTime()
@@ -116,21 +150,22 @@ void commandFunc(void* data)
     {
         if(commandBuffer->getDeltaTime() > 33.33f)
         {
-            EiCommand* command = commandBuffer->getCommand();
-            if(command)
+            EiCommand** cmd = commandBuffer->getCommand();
+            if(cmd)
             {
-                if(command->isClearFrame)
+                if((*cmd)->isClearFrame)
                 {
                     commandCount = 0;
-                    commandBuffer->_clearFrameAndDepth(command->clearColor);
+                    commandBuffer->_clearFrameAndDepth((*cmd)->clearColor);
                 }
-                else if(command->isPresent)
+                else if((*cmd)->isPresent)
                 {
-                    commandBuffer->_present(commandBuffer->getCommandPool(), commandCount);
+                    commandBuffer->_present(commandBuffer->getOutCmdPool(), commandCount);
+                    commandBuffer->getCommandFinish(commandCount);
                 }
                 else
                 {
-                    commandBuffer->getCommandPool()[commandCount++] = command;
+                    commandBuffer->getOutCmdPool()[commandCount++] = *cmd;
                 }
             }
         }

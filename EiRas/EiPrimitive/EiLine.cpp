@@ -52,21 +52,21 @@ void EiLine::draw(EiRas* device)
     
     for(float i = 0; i < steps; i += stepGap)
     {
-        device->setPixelWithDepthTest(pos, 0, color);
+        device->setPixel(pos, color);
         if(width > 0)
         {
             if(k > 1)
             {
                 for(float i = -width / 2.0; i <= width / 2.0; i += EiRas::getFrameDxy().x)
                 {
-                    device->setPixelWithDepthTest(vec2(pos.x + i, pos.y), 0, color);
+                    device->setPixel(vec2(pos.x + i, pos.y), color);
                 }
             }
             else
             {
                 for(float i = -width / 2.0; i <= width / 2.0; i += EiRas::getFrameDxy().x)
                 {
-                    device->setPixelWithDepthTest(vec2(pos.x, pos.y + i), 0, color);
+                    device->setPixel(vec2(pos.x, pos.y + i), color);
                 }
             }
         }

@@ -31,10 +31,13 @@ public:
     bool enableMerge;
     
     void initEi(vec2_Int frameSize);
-
-    void setPixelWithDepthTest(vec2 p, float z, vec4 color);
     
     void presentToFile(const char* fileName);
+    
+    void setPixel(int x, int y, vec4 color);
+    void setPixel(vec2 p, vec4 color);
+    void setPixelWithDepthTest(vec2 p, float z, vec4 color);
+    void setPixelWithDepthTest(vec3 p, vec4 color);
     
     vec4* getFrameBuffer();
     float* getDepthBuffer();
@@ -80,10 +83,10 @@ private:
     void _present(EiCommand** commands, int count);
     void resolveAAFrame();
     
-    void setPixel(int x, int y, vec4 color);
-    void setPixel(vec2 p, vec4 color);
     bool coordinate2frame(int &x, int &y);
     bool coordinate2frame(float &x, float &y);
+    
+    bool depthTest(int x, int y, int z);
 };
 
 #endif /* EiRas_hpp */

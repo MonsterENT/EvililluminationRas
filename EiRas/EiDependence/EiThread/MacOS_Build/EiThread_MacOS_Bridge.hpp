@@ -5,11 +5,11 @@
 //  Created by yang on 2018/12/25.
 //  Copyright © 2018 Monster. All rights reserved.
 //
-#include "../../../EiMacro.h"
-#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
-
 #ifndef EiThread_MacOS
 #define EiThread_MacOS
+
+#include "../../../EiMacro.h"
+#if (defined Ei_MacOS_Build) || (defined Ei_iOS_Build)
 
 #include "../EiThread.hpp"
 

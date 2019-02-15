@@ -40,11 +40,6 @@ void EiRas::initEi(vec2_Int _frameSize)
     frame_front = new vec4[frameSize.x * frameSize.y];
     depthBuffer = new float[frameSize.x * frameSize.y];
     
-    for(int i = 0; i < frameSize.x * frameSize.y; i++)
-    {
-        depthBuffer[i] = MAXFLOAT;
-    }
-    
     NDC2FrameWidth = frameSize.x;
     NDC2FrameHeight = frameSize.y;
     
@@ -53,33 +48,14 @@ void EiRas::initEi(vec2_Int _frameSize)
 
 
 
-void EiRas::setPixel(int x,int y,vec4 color)
+void EiRas::setPixel(int x,int y, vec4 color)
 {
-    if(coordinate2frame(x, y))
-    {
-        if(enableMerge)
-        {
-            frame_back[y * getFrameSize().x + x] = alphaMerge(frame_back[y * getFrameSize().x + x], color);
-        }
-        else
-        {
-            frame_back[y * getFrameSize().x + x] = color;
-        }
-    }
+    setPixel(vec2(x, y), color);
 }
 
-void EiRas::setPixel(vec2 p,vec4 color)
-{
-    int x = p.x;
-    int y = p.y;
-    
-    setPixel(x, y, color);
-}
-
-void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
+void EiRas::setPixel(vec2 p, vec4 color)
 {
     static vec2* subPixel = new vec2[4];
-    
     
     for(int index = 0; index < 4; index++)
     {
@@ -94,24 +70,42 @@ void EiRas::setPixelWithDepthTest(vec2 p,float z,vec4 color)
             int x = subPixel[i].x;
             int y = subPixel[i].y;
             
-            if(depthBuffer[y * NDC2FrameWidth + x] < z)
-            {
-                continue;
-            }
-            
-            depthBuffer[y * NDC2FrameWidth + x] = z;
-            
             if(enableMerge)
             {
-                frame_back[y * NDC2FrameWidth + x] = alphaMerge(frame_back[y * NDC2FrameWidth + x], color / 4.0);
+                frame_back[y * frameSize.x + x] = alphaMerge(frame_back[y * frameSize.x + x], color / 4.0);
             }
             else
             {
-                frame_back[y * NDC2FrameWidth + x] = color / 4.0;
+                frame_back[y * frameSize.x + x] = color / 4.0;
             }
         }
     }
 }
+
+void EiRas::setPixelWithDepthTest(vec2 p, float z, vec4 color)
+{
+    if(!depthTest((int)p.x, (int)p.y, z))
+    {
+        return;
+    }
+    
+    depthBuffer[(int)p.y * frameSize.x + (int)p.x] = z;
+    
+    setPixel(p, color);
+}
+
+void EiRas::setPixelWithDepthTest(vec3 p, vec4 color)
+{
+    if(!depthTest((int)p.x, (int)p.y, (int)p.z))
+    {
+        return;
+    }
+    
+    depthBuffer[(int)p.y * frameSize.x + (int)p.x] = (int)p.z;
+    
+    setPixel(p, color);
+}
+
 
 void EiRas::presentToFile(const char* fileName)
 {
@@ -142,9 +136,9 @@ bool EiRas::sampleFrame(int x,int y, vec4 &Color, vec4* frame)
     {
         frame = frame_back;
     }
-    if(x >= 0 && y >= 0 && x < NDC2FrameWidth && y < NDC2FrameHeight)
+    if(x >= 0 && y >= 0 && x < frameSize.x && y < frameSize.y)
     {
-        Color += frame[y * NDC2FrameWidth + x];
+        Color += frame[y * frameSize.x + x];
         return true;
     }
     return false;
@@ -189,6 +183,15 @@ bool EiRas::coordinate2frame(float &x, float &y)
     return false;
 }
 
+bool EiRas::depthTest(int x, int y, int z)
+{
+    if(depthBuffer[y * frameSize.x + x] < z)
+    {
+        return false;
+    }
+    return true;
+}
+
 vec4* EiRas::getFrameBuffer()
 {
     return frame_front;
@@ -201,7 +204,6 @@ float* EiRas::getDepthBuffer()
 
 void EiRas::clearFrameAndDepth(vec4 clearColor)
 {
-    EiCommand* command = new EiCommand;
     //    //pipe line state
     //    vec4 clearColor;
     //    bool isClearFrame = false;
@@ -211,45 +213,62 @@ void EiRas::clearFrameAndDepth(vec4 clearColor)
     //    EiPrimitive** primitives;
     //    unsigned int primitiveCount;
     //    bool* destoryFlag;
-    command->clearColor = clearColor;
-    command->isClearFrame = true;
-    commandBuffer->addCommand(command);
+    
+    EiCommand* cmd = commandBuffer->addCommand();
+    if(cmd)
+    {
+        cmd->refreshStatus();
+        cmd->clearColor = clearColor;
+        cmd->isClearFrame = true;
+        commandBuffer->addCommandFinish();
+    }
 }
 
 void EiRas::drawPrimitives(EiPrimitive** primitives, int count)
 {
-    EiCommand* command = new EiCommand;
-    
-    EiPrimitive** copy_array = new EiPrimitive*[count];
-    for(int i = 0; i < count; i++)
+    EiCommand* cmd = commandBuffer->addCommand();
+    if(cmd)
     {
-        copy_array[i] = primitives[i]->copy();
+        cmd->refreshStatus();
+        EiPrimitive** copy_array = new EiPrimitive*[count];
+        for(int i = 0; i < count; i++)
+        {
+            copy_array[i] = primitives[i]->copy();
+        }
+        
+        cmd->primitives = copy_array;
+        cmd->primitiveCount = count;
+        cmd->enableMerge = enableMerge;
+        cmd->destoryPrimitiveArray = true;
+        commandBuffer->addCommandFinish();
     }
-    
-    command->primitives = copy_array;
-    command->primitiveCount = count;
-    command->enableMerge = enableMerge;
-    command->destoryPrimitiveArray = true;
-    commandBuffer->addCommand(command);
 }
 
 void EiRas::drawPrimitive(EiPrimitive* primitive)
 {
-    EiPrimitive** array = new EiPrimitive*[1];
-    array[0] = primitive->copy();
-    EiCommand* command = new EiCommand;
-    command->primitives = array;
-    command->primitiveCount = 1;
-    command->enableMerge = enableMerge;
-    command->destoryPrimitiveArray = true;
-    commandBuffer->addCommand(command);
+    EiCommand* cmd = commandBuffer->addCommand();
+    if(cmd)
+    {
+        cmd->refreshStatus();
+        EiPrimitive** array = new EiPrimitive*[1];
+        array[0] = primitive->copy();
+        cmd->primitives = array;
+        cmd->primitiveCount = 1;
+        cmd->enableMerge = enableMerge;
+        cmd->destoryPrimitiveArray = true;
+        commandBuffer->addCommandFinish();
+    }
 }
 
 void EiRas::present()
 {
-    EiCommand* command = new EiCommand;
-    command->isPresent = true;
-    commandBuffer->addCommand(command);
+    EiCommand* cmd = commandBuffer->addCommand();
+    if(cmd)
+    {
+        cmd->refreshStatus();
+        cmd->isPresent = true;
+        commandBuffer->addCommandFinish();
+    }
 }
 
 void EiRas::_clearFrameAndDepth(vec4& clearColor)
@@ -275,8 +294,10 @@ void EiRas::_present(EiCommand** commands, int count)
     for(int i = 0; i < count; i++)
     {
         EiCommand* command = commands[i];
-        _drawPrimitives(command->primitives, command->primitiveCount);
-        delete command;
+        if(command->primitives)
+        {
+            _drawPrimitives(command->primitives, command->primitiveCount);
+        }
     }
     
     resolveAAFrame();

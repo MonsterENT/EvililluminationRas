@@ -40,6 +40,11 @@ public:
     
     EiCommand()
     {
+        refreshStatus();
+    }
+    
+    void refreshStatus()
+    {
         isClearFrame = false;
         isPresent = false;
         destoryPrimitiveArray = false;
@@ -63,10 +68,12 @@ public:
     EiCommandBuffer(unsigned int bufferSize, EiRas* _device);
     ~EiCommandBuffer();
     
-    void addCommand(EiCommand* command);
-    EiCommand* getCommand();
+    EiCommand* addCommand();
+    void addCommandFinish();
+    EiCommand** getCommand();
+    void getCommandFinish(int count);
     
-    EiCommand** getCommandPool();
+    EiCommand** getOutCmdPool();
     
     double getDeltaTime();
     
@@ -82,8 +89,8 @@ private:
     EiTime* time;
     
     EiCommandThreadCtl* threadCtl;
-//    EiCommand* commandInPool[EiCommandBuffer_MAX_Command];
-    EiCommand* commandOutPool[EiCommandBuffer_MAX_Command];
+    
+    EiCommand** outCmdPool;
 };
 
 #endif /* EiCommandBuffer_hpp */

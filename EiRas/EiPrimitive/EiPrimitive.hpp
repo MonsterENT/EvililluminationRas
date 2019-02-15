@@ -43,12 +43,9 @@ public:
     
     inline void chageStartEnd(float& start,float& end)
     {
-        float temp;
         if(start > end)
         {
-            temp = start;
-            start = end;
-            end = temp;
+            EiMath_Q::swap(start, end);
         }
         
     }
